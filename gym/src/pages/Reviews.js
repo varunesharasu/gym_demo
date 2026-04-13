@@ -2,6 +2,7 @@ import React from 'react';
 import SectionTitle from '../components/SectionTitle';
 import TestimonialCard from '../components/TestimonialCard';
 import BorderGlow from '../components/BorderGlow';
+import CountUp from '../components/CountUp';
 import { testimonials } from '../data/mockData';
 import { FaStar, FaPen } from 'react-icons/fa';
 
@@ -26,7 +27,9 @@ const Reviews = () => {
 
           {/* Rating Badge */}
           <div className="inline-flex items-center gap-4 glass-card px-6 py-4 mt-8">
-            <div className="text-4xl font-extrabold gradient-text">{avgRating}</div>
+            <div className="text-4xl font-extrabold gradient-text">
+              <CountUp to={Number(avgRating)} duration={1.25} startWhen={true} />
+            </div>
             <div className="text-left">
               <div className="flex gap-1 mb-1">
                 {[...Array(5)].map((_, i) => (
@@ -36,7 +39,9 @@ const Reviews = () => {
                   />
                 ))}
               </div>
-              <p className="text-gray-500 text-sm">Based on {testimonials.length} reviews</p>
+                <p className="text-gray-500 text-sm">
+                  Based on <CountUp to={testimonials.length} duration={1.25} className="inline-block" /> reviews
+                </p>
             </div>
           </div>
         </div>

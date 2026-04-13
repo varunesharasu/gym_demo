@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaCheck, FaTimes } from 'react-icons/fa';
+import CountUp from './CountUp';
 
 const PricingCard = ({ name, price, period, popular, features, notIncluded }) => {
   return (
@@ -21,7 +22,9 @@ const PricingCard = ({ name, price, period, popular, features, notIncluded }) =>
       <h3 className="text-2xl font-bold text-white mb-2">{name}</h3>
 
       <div className="mb-6">
-        <span className="text-5xl font-extrabold gradient-text">${price}</span>
+        <span className="text-5xl font-extrabold gradient-text">$
+          <CountUp to={price} separator="," className="inline-block" duration={1.5} />
+        </span>
         <span className="text-gray-500 ml-2">/{period}</span>
       </div>
 

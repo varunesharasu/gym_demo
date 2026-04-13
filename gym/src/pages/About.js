@@ -1,5 +1,6 @@
 import React from 'react';
 import SectionTitle from '../components/SectionTitle';
+import CountUp from '../components/CountUp';
 import { trainers } from '../data/mockData';
 import { FaCheckCircle, FaHeart, FaBolt, FaGlobe } from 'react-icons/fa';
 
@@ -61,15 +62,21 @@ const About = () => {
               </p>
               <div className="flex flex-wrap gap-6">
                 <div className="text-center">
-                  <div className="text-3xl font-extrabold gradient-text">10+</div>
+                  <div className="text-3xl font-extrabold gradient-text">
+                    <CountUp to={10} duration={1.5} />+
+                  </div>
                   <div className="text-gray-500 text-sm">Years</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-extrabold gradient-text">5K+</div>
+                  <div className="text-3xl font-extrabold gradient-text">
+                    <CountUp to={5000} duration={1.8} separator="," />+
+                  </div>
                   <div className="text-gray-500 text-sm">Members</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-extrabold gradient-text">95%</div>
+                  <div className="text-3xl font-extrabold gradient-text">
+                    <CountUp to={95} duration={1.4} />%
+                  </div>
                   <div className="text-gray-500 text-sm">Satisfaction</div>
                 </div>
               </div>
@@ -84,7 +91,9 @@ const About = () => {
               </div>
               <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-gradient-to-br from-royal-500 to-royal-800 rounded-2xl flex items-center justify-center shadow-2xl">
                 <div className="text-center">
-                  <div className="text-2xl font-extrabold text-white">10+</div>
+                  <div className="text-2xl font-extrabold text-white">
+                    <CountUp to={10} duration={1.5} />+
+                  </div>
                   <div className="text-royal-200 text-xs">Years Strong</div>
                 </div>
               </div>

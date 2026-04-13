@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import SectionTitle from '../components/SectionTitle';
 import PricingCard from '../components/PricingCard';
-import { packages, amenities, whyChooseUs, trainers, transformations, getIcon, featureIcons } from '../data/mockData';
+import { packages, amenities, whyChooseUs, getIcon } from '../data/mockData';
 
 const Services = () => {
   const [billingPeriod, setBillingPeriod] = useState('monthly');
@@ -39,20 +39,10 @@ const Services = () => {
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white mb-4 animate-[slide-up_0.8s_ease-out_forwards]">
             Our <span className="gradient-text">Services</span>
           </h1>
-          
-          <p className="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-8 animate-[slide-up_0.9s_ease-out_forwards_0.1s_backwards]">
-            From beginner-friendly programs to advanced athletic training — discover packages, amenities, and everything that makes us the best choice for your fitness journey.
+          <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+            From beginner-friendly programs to advanced athletic training — discover
+            packages, amenities, and everything that makes us the best choice for your fitness journey.
           </p>
-
-          {/* Hero CTA Button */}
-          <div className="animate-[slide-up_1s_ease-out_forwards_0.2s_backwards] flex flex-wrap gap-4 justify-center">
-            <button className="btn-primary hover:scale-105 active:scale-100 transition-transform duration-300">
-              Explore Plans
-            </button>
-            <button className="btn-outline hover:scale-105 active:scale-100 transition-transform duration-300">
-              Schedule Tour
-            </button>
-          </div>
         </div>
       </section>
 

@@ -4,6 +4,7 @@ import HeroCarousel from '../components/HeroCarousel';
 import StatCounter from '../components/StatCounter';
 import SectionTitle from '../components/SectionTitle';
 import TestimonialCard from '../components/TestimonialCard';
+import ScrollReveal from '../components/ScrollReveal';
 import { stats, testimonials, whyChooseUs, getIcon } from '../data/mockData';
 
 const Home = () => {
@@ -34,11 +35,17 @@ const Home = () => {
                 Unleash Your
                 <span className="block gradient-text">Inner Strength</span>
               </h1>
-              <p className="text-gray-400 text-lg md:text-xl max-w-lg mb-8 leading-relaxed">
+              <ScrollReveal
+                containerClassName="max-w-lg mb-8"
+                textClassName="text-gray-400 text-lg md:text-xl leading-relaxed"
+                baseOpacity={0.14}
+                baseRotation={2}
+                blurStrength={3}
+              >
                 Transform your body. Elevate your mind. Join the most premium
                 fitness experience in the city with world-class trainers and
                 state-of-the-art equipment.
-              </p>
+              </ScrollReveal>
               <div className="flex flex-wrap gap-4">
                 <a href="#contact" onClick={(e) => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); }} className="btn-primary inline-flex items-center gap-2">
                   Book Free Trial

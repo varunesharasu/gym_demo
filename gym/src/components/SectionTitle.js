@@ -1,4 +1,5 @@
 import React from 'react';
+import ScrollReveal from './ScrollReveal';
 
 const SectionTitle = ({ title, subtitle, center = true, light = false }) => {
   return (
@@ -11,9 +12,15 @@ const SectionTitle = ({ title, subtitle, center = true, light = false }) => {
         {title}
       </h2>
       {subtitle && (
-        <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto">
+        <ScrollReveal
+          containerClassName="max-w-2xl mx-auto"
+          textClassName="text-gray-400 text-lg md:text-xl"
+          baseOpacity={0.15}
+          baseRotation={2}
+          blurStrength={3}
+        >
           {subtitle}
-        </p>
+        </ScrollReveal>
       )}
       <div
         className={`mt-4 h-1 w-20 bg-gradient-to-r from-royal-500 to-royal-700 rounded-full ${

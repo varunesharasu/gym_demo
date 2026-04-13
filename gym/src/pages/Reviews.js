@@ -1,6 +1,9 @@
 import React from 'react';
 import SectionTitle from '../components/SectionTitle';
 import TestimonialCard from '../components/TestimonialCard';
+import BorderGlow from '../components/BorderGlow';
+import CountUp from '../components/CountUp';
+import ScrollReveal from '../components/ScrollReveal';
 import { testimonials } from '../data/mockData';
 import { FaStar, FaPen } from 'react-icons/fa';
 
@@ -18,14 +21,22 @@ const Reviews = () => {
           <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-4">
             Customer <span className="gradient-text">Reviews</span>
           </h1>
-          <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+          <ScrollReveal
+            containerClassName="max-w-2xl mx-auto"
+            textClassName="text-gray-400 text-lg md:text-xl leading-relaxed"
+            baseOpacity={0.14}
+            baseRotation={2}
+            blurStrength={3}
+          >
             Don't just take our word for it — hear what our members have to say about their
             experience at JERAI FITNESS.
-          </p>
+          </ScrollReveal>
 
           {/* Rating Badge */}
           <div className="inline-flex items-center gap-4 glass-card px-6 py-4 mt-8">
-            <div className="text-4xl font-extrabold gradient-text">{avgRating}</div>
+            <div className="text-4xl font-extrabold gradient-text">
+              <CountUp to={Number(avgRating)} duration={1.25} startWhen={true} />
+            </div>
             <div className="text-left">
               <div className="flex gap-1 mb-1">
                 {[...Array(5)].map((_, i) => (
@@ -35,7 +46,9 @@ const Reviews = () => {
                   />
                 ))}
               </div>
-              <p className="text-gray-500 text-sm">Based on {testimonials.length} reviews</p>
+                <p className="text-gray-500 text-sm">
+                  Based on <CountUp to={testimonials.length} duration={1.25} className="inline-block" /> reviews
+                </p>
             </div>
           </div>
         </div>
@@ -50,7 +63,21 @@ const Reviews = () => {
           />
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {testimonials.map((review) => (
-              <TestimonialCard key={review.id} {...review} />
+              <BorderGlow
+                key={review.id}
+                className="h-full rounded-3xl"
+                edgeSensitivity={32}
+                glowColor="40 80 80"
+                backgroundColor="#060010"
+                borderRadius={24}
+                glowRadius={34}
+                glowIntensity={1}
+                coneSpread={24}
+                colors={['#7c3aed', '#ec4899', '#0ea5e9']}
+                fillOpacity={0.42}
+              >
+                <TestimonialCard {...review} />
+              </BorderGlow>
             ))}
           </div>
         </div>

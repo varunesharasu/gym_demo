@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { contactInfo } from '../data/mockData';
+import ScrollReveal from '../components/ScrollReveal';
 import {
   FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock,
   FaInstagram, FaFacebookF, FaTwitter, FaYoutube,
@@ -34,10 +35,16 @@ const Contact = () => {
           <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-4">
             Get In <span className="gradient-text">Touch</span>
           </h1>
-          <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+          <ScrollReveal
+            containerClassName="max-w-2xl mx-auto"
+            textClassName="text-gray-400 text-lg md:text-xl leading-relaxed"
+            baseOpacity={0.14}
+            baseRotation={2}
+            blurStrength={3}
+          >
             Have questions? Want to book a tour? We'd love to hear from you.
             Reach out through any of the channels below.
-          </p>
+          </ScrollReveal>
         </div>
       </section>
 

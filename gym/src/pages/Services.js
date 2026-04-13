@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import SectionTitle from '../components/SectionTitle';
 import PricingCard from '../components/PricingCard';
-import { packages, amenities, whyChooseUs, getIcon } from '../data/mockData';
+import { packages, amenities, whyChooseUs, trainers, transformations, getIcon } from '../data/mockData';
 
 const Services = () => {
   const [billingPeriod, setBillingPeriod] = useState('monthly');

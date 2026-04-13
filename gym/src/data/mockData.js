@@ -2,7 +2,7 @@ import {
   FaDumbbell, FaSwimmer, FaParking, FaShower, FaCoffee, FaWifi,
   FaHeartbeat, FaRunning, FaUsers, FaClock, FaShieldAlt, FaStar,
   FaInstagram, FaFacebookF, FaTwitter, FaYoutube,
-  FaPhone, FaEnvelope, FaMapMarkerAlt
+  FaPhone, FaEnvelope, FaMapMarkerAlt, FaChevronDown
 } from 'react-icons/fa';
 import { GiMuscleUp, GiLockers, GiWeightLiftingUp } from 'react-icons/gi';
 import { MdSpa } from 'react-icons/md';
@@ -304,7 +304,7 @@ export const preferences = {
 // Icon mapping helper
 export const iconMap = {
   FaDumbbell, FaSwimmer, FaParking, FaShower, FaCoffee, FaWifi,
-  FaHeartbeat, FaRunning, FaUsers, FaClock, FaShieldAlt, FaStar,
+  FaHeartbeat, FaRunning, FaUsers, FaClock, FaShieldAlt, FaStar, FaChevronDown,
   FaInstagram, FaFacebookF, FaTwitter, FaYoutube,
   FaPhone, FaEnvelope, FaMapMarkerAlt,
   GiMuscleUp, GiLockers, GiWeightLiftingUp,
@@ -312,3 +312,120 @@ export const iconMap = {
 };
 
 export const getIcon = (name) => iconMap[name] || FaStar;
+
+// Class Schedule Data
+export const classSchedule = [
+  {
+    id: 1,
+    day: "Monday",
+    sessions: [
+      { time: "6:00 AM", class: "Boxing", trainer: "Alex Rivera", duration: "60 min" },
+      { time: "9:00 AM", class: "Yoga Flow", trainer: "Sarah Chen", duration: "45 min" },
+      { time: "5:30 PM", class: "HIIT Training", trainer: "Marcus Johnson", duration: "50 min" },
+      { time: "7:00 PM", class: "Strength & Conditioning", trainer: "Alex Rivera", duration: "60 min" },
+    ],
+  },
+  {
+    id: 2,
+    day: "Tuesday",
+    sessions: [
+      { time: "6:00 AM", class: "Spin Class", trainer: "Elena Petrova", duration: "45 min" },
+      { time: "10:00 AM", class: "Pilates", trainer: "Sarah Chen", duration: "50 min" },
+      { time: "6:00 PM", class: "Olympic Lifting", trainer: "Alex Rivera", duration: "90 min" },
+      { time: "8:00 PM", class: "Functional Training", trainer: "Marcus Johnson", duration: "60 min" },
+    ],
+  },
+  {
+    id: 3,
+    day: "Wednesday",
+    sessions: [
+      { time: "6:30 AM", class: "HIIT Training", trainer: "Marcus Johnson", duration: "50 min" },
+      { time: "12:00 PM", class: "Core & Abs", trainer: "Elena Petrova", duration: "30 min" },
+      { time: "5:00 PM", class: "CrossFit", trainer: "Alex Rivera", duration: "60 min" },
+      { time: "7:30 PM", class: "Yoga & Meditation", trainer: "Sarah Chen", duration: "75 min" },
+    ],
+  },
+];
+
+// FAQ Data
+export const faqItems = [
+  {
+    id: 1,
+    question: "What are the membership cancellation terms?",
+    answer: "We offer month-to-month memberships with no long-term contracts. You can cancel anytime with 30 days' notice. No hidden fees or penalties.",
+  },
+  {
+    id: 2,
+    question: "Do you offer free trial or introductory sessions?",
+    answer: "Yes! New members get a complimentary fitness assessment and one week of free access to explore our facilities and try group classes.",
+  },
+  {
+    id: 3,
+    question: "Are personal training sessions included in all memberships?",
+    answer: "Personal training is included with Pro and Elite memberships. Basic members can add PT sessions at discounted rates.",
+  },
+  {
+    id: 4,
+    question: "What is the age requirement to join?",
+    answer: "Members must be 18 years or older. We offer special youth programs for ages 13-17 with parental consent.",
+  },
+  {
+    id: 5,
+    question: "Can I bring a guest to the gym?",
+    answer: "Elite members can bring 2 guests per month free of charge. Other members can add a guest day pass for $15.",
+  },
+  {
+    id: 6,
+    question: "Do you have childcare or kids' programs?",
+    answer: "We offer supervised childcare during peak hours (9 AM—2 PM, 5 PM—8 PM) for members' children ages 6 months—12 years.",
+  },
+];
+
+// Transformations Data
+export const transformations = [
+  {
+    id: 1,
+    name: "Sarah Johnson",
+    duration: "6 months",
+    weight: "32 kg",
+    story: "From zero fitness to running marathons. Sarah's dedication and our trainers' guidance changed her life completely.",
+    stats: { before: "95kg", after: "63kg", bmi: "31.2 → 20.8" },
+  },
+  {
+    id: 2,
+    name: "Mike Chen",
+    duration: "8 months",
+    weight: "18 kg loss, 10 kg muscle gain",
+    story: "A complete body recomposition. Mike combined strength training with proper nutrition to build muscle while losing fat.",
+    stats: { before: "88kg (38% BF)", after: "80kg (22% BF)", strength: "Bench: 80kg → 140kg" },
+  },
+  {
+    id: 3,
+    name: "Jessica Williams",
+    duration: "4 months",
+    weight: "22 kg",
+    story: "Post-pregnancy fitness journey. Jessica regained her strength and confidence with our women's-focused programs.",
+    stats: { before: "78kg", after: "56kg", energy: "Increased by 85%" },
+  },
+];
+
+// Feature Icons Mapping (for pricing cards)
+export const featureIcons = {
+  "Access to gym floor": "FaDumbbell",
+  "Basic equipment usage": "GiWeightLiftingUp",
+  "Locker room access": "GiLockers",
+  "2 group classes/week": "FaUsers",
+  "Fitness assessment": "FaHeartbeat",
+  "Full gym access 24/7": "FaClock",
+  "All equipment & machines": "FaDumbbell",
+  "Unlimited group classes": "FaRunning",
+  "Pool & sauna access": "FaSwimmer",
+  "2 PT sessions/month": "GiMuscleUp",
+  "Nutrition plan": "FaCoffee",
+  "Unlimited personal training": "GiMuscleUp",
+  "Private locker": "GiLockers",
+  "Spa & recovery zone": "MdSpa",
+  "Monthly body composition": "FaHeartbeat",
+  "Priority class booking": "FaClock",
+  "Guest passes (2/month)": "FaUsers",
+};

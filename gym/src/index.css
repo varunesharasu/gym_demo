@@ -31,6 +31,14 @@ html {
     @apply bg-gray-900/60 backdrop-blur-md border border-gray-800/50 rounded-2xl;
   }
 
+  .glass-card-hover {
+    @apply glass-card hover:bg-gray-900/80 hover:border-royal-500/50 transition-all duration-300;
+  }
+
+  .glass-card-glow {
+    @apply glass-card shadow-lg shadow-royal-500/20 border-royal-500/50;
+  }
+
   .gradient-text {
     @apply bg-gradient-to-r from-royal-400 to-royal-600 bg-clip-text text-transparent;
   }
@@ -50,5 +58,29 @@ html {
 
   .section-padding {
     @apply px-4 sm:px-6 lg:px-8 py-16 md:py-24;
+  }
+
+  /* Scroll reveal animation */
+  .reveal-on-scroll {
+    @apply opacity-0 translate-y-8 transition-all duration-700 ease-out;
+  }
+
+  .reveal-on-scroll.revealed {
+    @apply opacity-100 translate-y-0;
+  }
+
+  /* Card hover elevation */
+  .card-hover-lift {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-xl;
+  }
+
+  /* Glow effect utility */
+  .glow-effect {
+    @apply shadow-lg shadow-royal-500/30 hover:shadow-royal-500/50 transition-shadow duration-300;
+  }
+
+  /* Icon hover animation */
+  .icon-hover {
+    @apply transition-all duration-300 hover:scale-110 hover:text-royal-300;
   }
 }

@@ -31,6 +31,9 @@ module.exports = {
         'slide-down': 'slideDown 0.3s ease-out forwards',
         'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
         'count-up': 'countUp 0.4s ease-out',
+        'bounce': 'bounce 1s infinite',
+        'glow-pulse': 'glowPulse 2s ease-in-out infinite',
+        'spin-slow': 'spin 3s linear infinite',
       },
       keyframes: {
         fadeIn: {
@@ -48,6 +51,14 @@ module.exports = {
         pulseGlow: {
           '0%, 100%': { boxShadow: '0 0 20px rgba(37, 99, 235, 0.3)' },
           '50%': { boxShadow: '0 0 40px rgba(37, 99, 235, 0.6)' },
+        },
+        glowPulse: {
+          '0%, 100%': { 
+            boxShadow: '0 0 10px rgba(37, 99, 235, 0.4), 0 0 20px rgba(37, 99, 235, 0.2)' 
+          },
+          '50%': { 
+            boxShadow: '0 0 20px rgba(37, 99, 235, 0.6), 0 0 40px rgba(37, 99, 235, 0.4)' 
+          },
         },
       },
     },

@@ -1,6 +1,7 @@
 import React from 'react';
 import SectionTitle from '../components/SectionTitle';
 import ScrollReveal from '../components/ScrollReveal';
+import BorderGlow from '../components/BorderGlow';
 import { preferences, getIcon } from '../data/mockData';
 import { FaCheckCircle, FaTimesCircle, FaArrowRight } from 'react-icons/fa';
 
@@ -35,19 +36,30 @@ const Preferences = () => {
             subtitle="Tailored experiences for every fitness level and lifestyle"
           />
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {preferences.audiences.map((audience, index) => {
+            {preferences.audiences.map((audience) => {
               const Icon = getIcon(audience.icon);
               return (
-                <div
+                <BorderGlow
                   key={audience.id}
-                  className="glass-card p-6 md:p-8 group hover:border-royal-500/50 hover:-translate-y-1 transition-all duration-300 text-center"
+                  className="h-full rounded-2xl"
+                  edgeSensitivity={30}
+                  glowColor="40 80 80"
+                  backgroundColor="#060010"
+                  borderRadius={22}
+                  glowRadius={26}
+                  glowIntensity={1}
+                  coneSpread={24}
+                  colors={['#7c3aed', '#ec4899', '#0ea5e9']}
+                  fillOpacity={0.38}
                 >
-                  <div className="w-16 h-16 rounded-2xl bg-royal-500/10 flex items-center justify-center mx-auto mb-5 group-hover:bg-royal-500/20 group-hover:scale-110 transition-all duration-300">
-                    <Icon className="text-royal-400 text-3xl" />
+                  <div className="glass-card p-6 md:p-8 group hover:border-royal-500/50 hover:-translate-y-1 transition-all duration-300 text-center h-full">
+                    <div className="w-16 h-16 rounded-2xl bg-royal-500/10 flex items-center justify-center mx-auto mb-5 group-hover:bg-royal-500/20 group-hover:scale-110 transition-all duration-300">
+                      <Icon className="text-royal-400 text-3xl" />
+                    </div>
+                    <h3 className="text-white font-semibold text-lg mb-3">{audience.title}</h3>
+                    <p className="text-gray-500 text-sm leading-relaxed">{audience.description}</p>
                   </div>
-                  <h3 className="text-white font-semibold text-lg mb-3">{audience.title}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed">{audience.description}</p>
-                </div>
+                </BorderGlow>
               );
             })}
           </div>
@@ -63,13 +75,24 @@ const Preferences = () => {
           />
           <div className="grid sm:grid-cols-2 gap-4">
             {preferences.valueProps.map((prop, index) => (
-              <div
+              <BorderGlow
                 key={index}
-                className="flex items-center gap-4 glass-card p-5 hover:border-royal-500/30 transition-all duration-300"
+                className="h-full rounded-2xl"
+                edgeSensitivity={30}
+                glowColor="40 80 80"
+                backgroundColor="#060010"
+                borderRadius={22}
+                glowRadius={26}
+                glowIntensity={1}
+                coneSpread={24}
+                colors={['#7c3aed', '#ec4899', '#0ea5e9']}
+                fillOpacity={0.38}
               >
-                <FaCheckCircle className="text-royal-500 text-lg flex-shrink-0" />
-                <span className="text-gray-300">{prop}</span>
-              </div>
+                <div className="flex items-center gap-4 glass-card p-5 hover:border-royal-500/30 transition-all duration-300 h-full">
+                  <FaCheckCircle className="text-royal-500 text-lg flex-shrink-0" />
+                  <span className="text-gray-300">{prop}</span>
+                </div>
+              </BorderGlow>
             ))}
           </div>
         </div>

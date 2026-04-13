@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { contactInfo } from '../data/mockData';
 import ScrollReveal from '../components/ScrollReveal';
+import BorderGlow from '../components/BorderGlow';
 import {
   FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock,
   FaInstagram, FaFacebookF, FaTwitter, FaYoutube,
@@ -53,57 +54,109 @@ const Contact = () => {
         <div className="max-w-7xl mx-auto">
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
             {/* Phone */}
-            <div className="glass-card p-6 text-center group hover:border-royal-500/50 transition-all duration-300">
-              <div className="w-14 h-14 rounded-xl bg-royal-500/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-royal-500/20 transition-colors">
-                <FaPhone className="text-royal-400 text-xl" />
+            <BorderGlow
+              className="h-full rounded-2xl"
+              edgeSensitivity={30}
+              glowColor="40 80 80"
+              backgroundColor="#060010"
+              borderRadius={22}
+              glowRadius={26}
+              glowIntensity={1}
+              coneSpread={24}
+              colors={['#7c3aed', '#ec4899', '#0ea5e9']}
+              fillOpacity={0.38}
+            >
+              <div className="glass-card p-6 text-center group hover:border-royal-500/50 transition-all duration-300 h-full">
+                <div className="w-14 h-14 rounded-xl bg-royal-500/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-royal-500/20 transition-colors">
+                  <FaPhone className="text-royal-400 text-xl" />
+                </div>
+                <h3 className="text-white font-semibold mb-2">Phone</h3>
+                {contactInfo.phone.map((num, i) => (
+                  <a
+                    key={i}
+                    href={`tel:${num.replace(/\D/g, '')}`}
+                    className="block text-gray-400 text-sm hover:text-royal-400 transition-colors"
+                  >
+                    {num}
+                  </a>
+                ))}
               </div>
-              <h3 className="text-white font-semibold mb-2">Phone</h3>
-              {contactInfo.phone.map((num, i) => (
-                <a
-                  key={i}
-                  href={`tel:${num.replace(/\D/g, '')}`}
-                  className="block text-gray-400 text-sm hover:text-royal-400 transition-colors"
-                >
-                  {num}
-                </a>
-              ))}
-            </div>
+            </BorderGlow>
 
             {/* Email */}
-            <div className="glass-card p-6 text-center group hover:border-royal-500/50 transition-all duration-300">
-              <div className="w-14 h-14 rounded-xl bg-royal-500/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-royal-500/20 transition-colors">
-                <FaEnvelope className="text-royal-400 text-xl" />
+            <BorderGlow
+              className="h-full rounded-2xl"
+              edgeSensitivity={30}
+              glowColor="40 80 80"
+              backgroundColor="#060010"
+              borderRadius={22}
+              glowRadius={26}
+              glowIntensity={1}
+              coneSpread={24}
+              colors={['#7c3aed', '#ec4899', '#0ea5e9']}
+              fillOpacity={0.38}
+            >
+              <div className="glass-card p-6 text-center group hover:border-royal-500/50 transition-all duration-300 h-full">
+                <div className="w-14 h-14 rounded-xl bg-royal-500/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-royal-500/20 transition-colors">
+                  <FaEnvelope className="text-royal-400 text-xl" />
+                </div>
+                <h3 className="text-white font-semibold mb-2">Email</h3>
+                {contactInfo.email.map((email, i) => (
+                  <a
+                    key={i}
+                    href={`mailto:${email}`}
+                    className="block text-gray-400 text-sm hover:text-royal-400 transition-colors"
+                  >
+                    {email}
+                  </a>
+                ))}
               </div>
-              <h3 className="text-white font-semibold mb-2">Email</h3>
-              {contactInfo.email.map((email, i) => (
-                <a
-                  key={i}
-                  href={`mailto:${email}`}
-                  className="block text-gray-400 text-sm hover:text-royal-400 transition-colors"
-                >
-                  {email}
-                </a>
-              ))}
-            </div>
+            </BorderGlow>
 
             {/* Address */}
-            <div className="glass-card p-6 text-center group hover:border-royal-500/50 transition-all duration-300">
-              <div className="w-14 h-14 rounded-xl bg-royal-500/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-royal-500/20 transition-colors">
-                <FaMapMarkerAlt className="text-royal-400 text-xl" />
+            <BorderGlow
+              className="h-full rounded-2xl"
+              edgeSensitivity={30}
+              glowColor="40 80 80"
+              backgroundColor="#060010"
+              borderRadius={22}
+              glowRadius={26}
+              glowIntensity={1}
+              coneSpread={24}
+              colors={['#7c3aed', '#ec4899', '#0ea5e9']}
+              fillOpacity={0.38}
+            >
+              <div className="glass-card p-6 text-center group hover:border-royal-500/50 transition-all duration-300 h-full">
+                <div className="w-14 h-14 rounded-xl bg-royal-500/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-royal-500/20 transition-colors">
+                  <FaMapMarkerAlt className="text-royal-400 text-xl" />
+                </div>
+                <h3 className="text-white font-semibold mb-2">Location</h3>
+                <p className="text-gray-400 text-sm">{contactInfo.address}</p>
               </div>
-              <h3 className="text-white font-semibold mb-2">Location</h3>
-              <p className="text-gray-400 text-sm">{contactInfo.address}</p>
-            </div>
+            </BorderGlow>
 
             {/* Hours */}
-            <div className="glass-card p-6 text-center group hover:border-royal-500/50 transition-all duration-300">
-              <div className="w-14 h-14 rounded-xl bg-royal-500/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-royal-500/20 transition-colors">
-                <FaClock className="text-royal-400 text-xl" />
+            <BorderGlow
+              className="h-full rounded-2xl"
+              edgeSensitivity={30}
+              glowColor="40 80 80"
+              backgroundColor="#060010"
+              borderRadius={22}
+              glowRadius={26}
+              glowIntensity={1}
+              coneSpread={24}
+              colors={['#7c3aed', '#ec4899', '#0ea5e9']}
+              fillOpacity={0.38}
+            >
+              <div className="glass-card p-6 text-center group hover:border-royal-500/50 transition-all duration-300 h-full">
+                <div className="w-14 h-14 rounded-xl bg-royal-500/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-royal-500/20 transition-colors">
+                  <FaClock className="text-royal-400 text-xl" />
+                </div>
+                <h3 className="text-white font-semibold mb-2">Hours</h3>
+                <p className="text-gray-400 text-sm">{contactInfo.hours.weekdays}</p>
+                <p className="text-gray-500 text-xs mt-1">365 days a year</p>
               </div>
-              <h3 className="text-white font-semibold mb-2">Hours</h3>
-              <p className="text-gray-400 text-sm">{contactInfo.hours.weekdays}</p>
-              <p className="text-gray-500 text-xs mt-1">365 days a year</p>
-            </div>
+            </BorderGlow>
           </div>
 
           {/* Social Links */}

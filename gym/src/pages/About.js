@@ -2,6 +2,7 @@ import React from 'react';
 import SectionTitle from '../components/SectionTitle';
 import CountUp from '../components/CountUp';
 import ScrollReveal from '../components/ScrollReveal';
+import BorderGlow from '../components/BorderGlow';
 import { trainers } from '../data/mockData';
 import { FaCheckCircle, FaHeart, FaBolt, FaGlobe } from 'react-icons/fa';
 
@@ -95,13 +96,26 @@ const About = () => {
               </div>
             </div>
             <div className="relative">
-              <div className="glass-card overflow-hidden rounded-2xl">
+              <BorderGlow
+                className="rounded-3xl"
+                edgeSensitivity={30}
+                glowColor="40 80 80"
+                backgroundColor="#060010"
+                borderRadius={24}
+                glowRadius={32}
+                glowIntensity={1}
+                coneSpread={24}
+                colors={['#7c3aed', '#ec4899', '#0ea5e9']}
+                fillOpacity={0.38}
+              >
+                <div className="glass-card overflow-hidden rounded-2xl">
                 <img
                   src="/about.png"
                   alt="JERAI FITNESS community training together"
                   className="w-full h-80 lg:h-96 object-cover"
                 />
-              </div>
+                </div>
+              </BorderGlow>
               <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-gradient-to-br from-royal-500 to-royal-800 rounded-2xl flex items-center justify-center shadow-2xl">
                 <div className="text-center">
                   <div className="text-2xl font-extrabold text-white">
@@ -136,11 +150,24 @@ const About = () => {
 
                   {/* Content */}
                   <div className={`ml-12 md:ml-0 md:w-1/2 ${index % 2 === 0 ? 'md:pr-12 md:text-right' : 'md:pl-12'}`}>
-                    <div className="glass-card p-6 hover:border-royal-500/30 transition-all duration-300">
-                      <span className="text-royal-400 font-bold text-sm">{item.year}</span>
-                      <h3 className="text-white font-semibold text-lg mt-1">{item.title}</h3>
-                      <p className="text-gray-500 text-sm mt-2">{item.desc}</p>
-                    </div>
+                    <BorderGlow
+                      className="h-full rounded-2xl"
+                      edgeSensitivity={30}
+                      glowColor="40 80 80"
+                      backgroundColor="#060010"
+                      borderRadius={22}
+                      glowRadius={26}
+                      glowIntensity={1}
+                      coneSpread={24}
+                      colors={['#7c3aed', '#ec4899', '#0ea5e9']}
+                      fillOpacity={0.38}
+                    >
+                      <div className="glass-card p-6 hover:border-royal-500/30 transition-all duration-300 h-full">
+                        <span className="text-royal-400 font-bold text-sm">{item.year}</span>
+                        <h3 className="text-white font-semibold text-lg mt-1">{item.title}</h3>
+                        <p className="text-gray-500 text-sm mt-2">{item.desc}</p>
+                      </div>
+                    </BorderGlow>
                   </div>
                 </div>
               ))}
@@ -155,15 +182,29 @@ const About = () => {
           <SectionTitle title="Meet Our Trainers" subtitle="Expert coaches dedicated to your success" />
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {trainers.map((trainer) => (
-              <div key={trainer.id} className="glass-card p-6 text-center group hover:border-royal-500/50 hover:-translate-y-1 transition-all duration-300">
-                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-royal-500 to-royal-800 flex items-center justify-center mx-auto mb-4 text-2xl font-bold text-white group-hover:scale-110 transition-transform">
-                  {trainer.initials}
+              <BorderGlow
+                key={trainer.id}
+                className="h-full rounded-2xl"
+                edgeSensitivity={30}
+                glowColor="40 80 80"
+                backgroundColor="#060010"
+                borderRadius={22}
+                glowRadius={26}
+                glowIntensity={1}
+                coneSpread={24}
+                colors={['#7c3aed', '#ec4899', '#0ea5e9']}
+                fillOpacity={0.38}
+              >
+                <div className="glass-card p-6 text-center group hover:border-royal-500/50 hover:-translate-y-1 transition-all duration-300 h-full">
+                  <div className="w-20 h-20 rounded-full bg-gradient-to-br from-royal-500 to-royal-800 flex items-center justify-center mx-auto mb-4 text-2xl font-bold text-white group-hover:scale-110 transition-transform">
+                    {trainer.initials}
+                  </div>
+                  <h3 className="text-white font-semibold text-lg">{trainer.name}</h3>
+                  <p className="text-royal-400 text-sm font-medium mb-2">{trainer.role}</p>
+                  <p className="text-gray-500 text-sm">{trainer.speciality}</p>
+                  <div className="mt-3 text-gray-600 text-xs">{trainer.experience} experience</div>
                 </div>
-                <h3 className="text-white font-semibold text-lg">{trainer.name}</h3>
-                <p className="text-royal-400 text-sm font-medium mb-2">{trainer.role}</p>
-                <p className="text-gray-500 text-sm">{trainer.speciality}</p>
-                <div className="mt-3 text-gray-600 text-xs">{trainer.experience} experience</div>
-              </div>
+              </BorderGlow>
             ))}
           </div>
         </div>
@@ -175,13 +216,27 @@ const About = () => {
           <SectionTitle title="Our Values" subtitle="The principles that guide everything we do" />
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((value, index) => (
-              <div key={index} className="glass-card p-6 text-center group hover:border-royal-500/50 transition-all duration-300">
-                <div className="w-14 h-14 rounded-xl bg-royal-500/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-royal-500/20 transition-colors">
-                  <value.icon className="text-royal-400 text-2xl" />
+              <BorderGlow
+                key={index}
+                className="h-full rounded-2xl"
+                edgeSensitivity={30}
+                glowColor="40 80 80"
+                backgroundColor="#060010"
+                borderRadius={22}
+                glowRadius={26}
+                glowIntensity={1}
+                coneSpread={24}
+                colors={['#7c3aed', '#ec4899', '#0ea5e9']}
+                fillOpacity={0.38}
+              >
+                <div className="glass-card p-6 text-center group hover:border-royal-500/50 transition-all duration-300 h-full">
+                  <div className="w-14 h-14 rounded-xl bg-royal-500/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-royal-500/20 transition-colors">
+                    <value.icon className="text-royal-400 text-2xl" />
+                  </div>
+                  <h3 className="text-white font-semibold mb-2">{value.title}</h3>
+                  <p className="text-gray-500 text-sm">{value.description}</p>
                 </div>
-                <h3 className="text-white font-semibold mb-2">{value.title}</h3>
-                <p className="text-gray-500 text-sm">{value.description}</p>
-              </div>
+              </BorderGlow>
             ))}
           </div>
         </div>

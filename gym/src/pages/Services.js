@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import SectionTitle from '../components/SectionTitle';
 import PricingCard from '../components/PricingCard';
+import BorderGlow from '../components/BorderGlow';
 import { packages, amenities, whyChooseUs, trainers, transformations, getIcon } from '../data/mockData';
 
 const Services = () => {
   const [billingPeriod, setBillingPeriod] = useState('monthly');
-  const cardShell = 'relative overflow-hidden glass-card border border-gray-800/60 transition-all duration-300 hover:-translate-y-2 hover:border-royal-500/50 hover:shadow-2xl hover:shadow-royal-500/20';
-  const cardSheen = 'absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500';
-  const cardGlow = 'absolute -top-10 -right-10 h-28 w-28 rounded-full bg-royal-500/10 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500';
 
   return (
     <section id="services">
@@ -103,23 +101,36 @@ const Services = () => {
             {amenities.map((amenity, idx) => {
               const Icon = getIcon(amenity.icon);
               return (
-                <div
+                <BorderGlow
                   key={amenity.id}
-                  className={`${cardShell} group p-6 text-center cursor-pointer`}
-                  style={{ animationDelay: `${idx * 50}ms` }}
+                  className="h-full rounded-2xl"
+                  edgeSensitivity={30}
+                  glowColor="40 80 80"
+                  backgroundColor="#060010"
+                  borderRadius={22}
+                  glowRadius={26}
+                  glowIntensity={1}
+                  coneSpread={24}
+                  colors={['#7c3aed', '#ec4899', '#0ea5e9']}
+                  fillOpacity={0.38}
                 >
-                  <div className={cardSheen} />
-                  <div className={cardGlow} />
-                  <div className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-royal-400/50 to-transparent opacity-60" />
-                  
-                  <div className="relative z-10">
-                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-royal-500/15 to-royal-700/20 border border-royal-500/15 flex items-center justify-center mx-auto mb-3 group-hover:bg-royal-500/30 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-inner shadow-black/20">
-                      <Icon className="text-royal-400 text-xl group-hover:animate-bounce" />
+                  <div
+                    className="glass-card relative overflow-hidden p-6 text-center cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:border-royal-500/50"
+                    style={{ animationDelay: `${idx * 50}ms` }}
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute -top-10 -right-10 h-28 w-28 rounded-full bg-royal-500/10 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-royal-400/50 to-transparent opacity-60" />
+
+                    <div className="relative z-10 group">
+                      <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-royal-500/15 to-royal-700/20 border border-royal-500/15 flex items-center justify-center mx-auto mb-3 group-hover:bg-royal-500/30 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-inner shadow-black/20">
+                        <Icon className="text-royal-400 text-xl group-hover:animate-bounce" />
+                      </div>
+                      <h3 className="text-white font-semibold text-sm mb-1">{amenity.name}</h3>
+                      <p className="text-gray-500 text-xs group-hover:text-gray-400 transition-colors">{amenity.description}</p>
                     </div>
-                    <h3 className="text-white font-semibold text-sm mb-1">{amenity.name}</h3>
-                    <p className="text-gray-500 text-xs group-hover:text-gray-400 transition-colors">{amenity.description}</p>
                   </div>
-                </div>
+                </BorderGlow>
               );
             })}
           </div>
@@ -141,25 +152,36 @@ const Services = () => {
             {whyChooseUs.map((item, idx) => {
               const Icon = getIcon(item.icon);
               return (
-                <div
+                <BorderGlow
                   key={item.id}
-                  className={`${cardShell} group p-6 md:p-8 flex gap-4 items-start`}
+                  className="h-full rounded-2xl"
+                  edgeSensitivity={30}
+                  glowColor="40 80 80"
+                  backgroundColor="#060010"
+                  borderRadius={22}
+                  glowRadius={26}
+                  glowIntensity={1}
+                  coneSpread={24}
+                  colors={['#7c3aed', '#ec4899', '#0ea5e9']}
+                  fillOpacity={0.38}
                 >
-                  <div className={cardSheen} />
-                  <div className={cardGlow} />
-                  <div className="absolute bottom-0 left-0 h-1 w-20 bg-gradient-to-r from-royal-500/50 to-transparent opacity-70" />
-                  
-                  <div className="relative z-10">
-                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-royal-500/15 to-royal-700/25 border border-royal-500/20 flex items-center justify-center flex-shrink-0 group-hover:bg-royal-500/20 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-lg shadow-black/15">
-                      <Icon className="text-royal-400 text-xl" />
+                  <div className="glass-card relative overflow-hidden p-6 md:p-8 flex gap-4 items-start transition-all duration-300 hover:-translate-y-2 hover:border-royal-500/50">
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute -top-10 -right-10 h-28 w-28 rounded-full bg-royal-500/10 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute bottom-0 left-0 h-1 w-20 bg-gradient-to-r from-royal-500/50 to-transparent opacity-70" />
+
+                    <div className="relative z-10">
+                      <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-royal-500/15 to-royal-700/25 border border-royal-500/20 flex items-center justify-center flex-shrink-0 group-hover:bg-royal-500/20 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-lg shadow-black/15">
+                        <Icon className="text-royal-400 text-xl" />
+                      </div>
+                    </div>
+
+                    <div className="relative z-10">
+                      <h3 className="text-white font-semibold mb-2">{item.title}</h3>
+                      <p className="text-gray-500 text-sm leading-relaxed">{item.description}</p>
                     </div>
                   </div>
-                  
-                  <div className="relative z-10">
-                    <h3 className="text-white font-semibold mb-2">{item.title}</h3>
-                    <p className="text-gray-500 text-sm leading-relaxed">{item.description}</p>
-                  </div>
-                </div>
+                </BorderGlow>
               );
             })}
           </div>
@@ -176,32 +198,45 @@ const Services = () => {
           
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {trainers.map((trainer, idx) => (
-              <div
+              <BorderGlow
                 key={trainer.id}
-                className={`${cardShell} group p-6 text-center cursor-pointer`}
-                style={{ animationDelay: `${idx * 100}ms` }}
+                className="h-full rounded-2xl"
+                edgeSensitivity={30}
+                glowColor="40 80 80"
+                backgroundColor="#060010"
+                borderRadius={22}
+                glowRadius={26}
+                glowIntensity={1}
+                coneSpread={24}
+                colors={['#7c3aed', '#ec4899', '#0ea5e9']}
+                fillOpacity={0.38}
               >
-                <div className={cardSheen} />
-                <div className={cardGlow} />
-                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-royal-400/60 to-transparent" />
+                <div
+                  className={`${'glass-card relative overflow-hidden p-6 text-center cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:border-royal-500/50'} group`}
+                  style={{ animationDelay: `${idx * 100}ms` }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute -top-10 -right-10 h-28 w-28 rounded-full bg-royal-500/10 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-royal-400/60 to-transparent" />
 
-                {/* Avatar placeholder with gradient */}
-                <div className="w-20 h-20 rounded-full mx-auto mb-4 bg-gradient-to-br from-royal-500 to-royal-700 flex items-center justify-center text-white text-2xl font-bold group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-300 shadow-lg shadow-royal-500/30 ring-1 ring-white/10">
-                  {trainer.initials}
+                  <div className="relative z-10">
+                    <div className="w-20 h-20 rounded-full mx-auto mb-4 bg-gradient-to-br from-royal-500 to-royal-700 flex items-center justify-center text-white text-2xl font-bold group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-300 shadow-lg shadow-royal-500/30 ring-1 ring-white/10">
+                      {trainer.initials}
+                    </div>
+
+                    <h3 className="text-white font-semibold mb-1">{trainer.name}</h3>
+                    <p className="text-royal-400 text-sm font-medium mb-2">{trainer.role}</p>
+
+                    <div className="space-y-2 text-sm">
+                      <p className="text-gray-500">{trainer.speciality}</p>
+                      <p className="text-gray-600 text-xs">{trainer.experience} experience</p>
+                      <button className="mt-3 text-royal-400 hover:text-royal-300 text-xs font-semibold transition-colors">
+                        View Profile →
+                      </button>
+                    </div>
+                  </div>
                 </div>
-                
-                <h3 className="text-white font-semibold mb-1">{trainer.name}</h3>
-                <p className="text-royal-400 text-sm font-medium mb-2">{trainer.role}</p>
-                
-                {/* Hidden details reveal on hover */}
-                <div className="space-y-2 text-sm">
-                  <p className="text-gray-500">{trainer.speciality}</p>
-                  <p className="text-gray-600 text-xs">{trainer.experience} experience</p>
-                  <button className="mt-3 text-royal-400 hover:text-royal-300 text-xs font-semibold transition-colors">
-                    View Profile →
-                  </button>
-                </div>
-              </div>
+              </BorderGlow>
             ))}
           </div>
         </div>
@@ -217,42 +252,51 @@ const Services = () => {
           
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {transformations.map((client, idx) => (
-              <div
+              <BorderGlow
                 key={client.id}
-                className={`${cardShell} group`}
+                className="h-full rounded-2xl"
+                edgeSensitivity={30}
+                glowColor="40 80 80"
+                backgroundColor="#060010"
+                borderRadius={22}
+                glowRadius={26}
+                glowIntensity={1}
+                coneSpread={24}
+                colors={['#7c3aed', '#ec4899', '#0ea5e9']}
+                fillOpacity={0.38}
               >
-                <div className={cardSheen} />
-                <div className={cardGlow} />
+                <div className="glass-card relative overflow-hidden group">
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute -top-10 -right-10 h-28 w-28 rounded-full bg-royal-500/10 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                {/* Before/After visualization */}
-                <div className="relative grid grid-cols-2 gap-2 h-40 bg-gray-800/30 border-b border-gray-800/50 p-4">
-                  <div className="absolute inset-x-6 top-2 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-                  <div className="rounded-xl bg-gradient-to-br from-orange-500/20 to-orange-600/20 border border-orange-500/30 flex flex-col items-center justify-center shadow-inner shadow-orange-950/20">
-                    <p className="text-orange-300 text-xs font-semibold mb-2">Before</p>
-                    <p className="text-white font-bold text-lg">{client.stats.before}</p>
+                  <div className="relative grid grid-cols-2 gap-2 h-40 bg-gray-800/30 border-b border-gray-800/50 p-4">
+                    <div className="absolute inset-x-6 top-2 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+                    <div className="rounded-xl bg-gradient-to-br from-orange-500/20 to-orange-600/20 border border-orange-500/30 flex flex-col items-center justify-center shadow-inner shadow-orange-950/20">
+                      <p className="text-orange-300 text-xs font-semibold mb-2">Before</p>
+                      <p className="text-white font-bold text-lg">{client.stats.before}</p>
+                    </div>
+                    <div className="rounded-xl bg-gradient-to-br from-green-500/20 to-green-600/20 border border-green-500/30 flex flex-col items-center justify-center shadow-inner shadow-green-950/20">
+                      <p className="text-green-300 text-xs font-semibold mb-2">After</p>
+                      <p className="text-white font-bold text-lg">{client.stats.after}</p>
+                    </div>
                   </div>
-                  <div className="rounded-xl bg-gradient-to-br from-green-500/20 to-green-600/20 border border-green-500/30 flex flex-col items-center justify-center shadow-inner shadow-green-950/20">
-                    <p className="text-green-300 text-xs font-semibold mb-2">After</p>
-                    <p className="text-white font-bold text-lg">{client.stats.after}</p>
-                  </div>
-                </div>
-                
-                {/* Details */}
-                <div className="p-6">
-                  <h3 className="text-white font-semibold text-lg mb-2">{client.name}</h3>
-                  <p className="text-royal-400 text-sm font-medium mb-3">{client.duration}</p>
-                  <p className="text-gray-400 text-sm leading-relaxed mb-4">{client.story}</p>
                   
-                  <div className="flex items-center justify-between text-xs pt-3 border-t border-white/5">
-                    <span className="text-green-400 font-semibold">
-                      ✓ {client.weight}
-                    </span>
-                    <button className="text-royal-400 hover:text-royal-300 font-semibold transition-colors">
-                      Learn More →
-                    </button>
+                  <div className="p-6">
+                    <h3 className="text-white font-semibold text-lg mb-2">{client.name}</h3>
+                    <p className="text-royal-400 text-sm font-medium mb-3">{client.duration}</p>
+                    <p className="text-gray-400 text-sm leading-relaxed mb-4">{client.story}</p>
+                    
+                    <div className="flex items-center justify-between text-xs pt-3 border-t border-white/5">
+                      <span className="text-green-400 font-semibold">
+                        ✓ {client.weight}
+                      </span>
+                      <button className="text-royal-400 hover:text-royal-300 font-semibold transition-colors">
+                        Learn More →
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </BorderGlow>
             ))}
           </div>
         </div>

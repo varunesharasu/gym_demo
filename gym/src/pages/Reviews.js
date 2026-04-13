@@ -1,7 +1,6 @@
 import React from 'react';
 import SectionTitle from '../components/SectionTitle';
 import TestimonialCard from '../components/TestimonialCard';
-import BorderGlow from '../components/BorderGlow';
 import CountUp from '../components/CountUp';
 import ScrollReveal from '../components/ScrollReveal';
 import { testimonials } from '../data/mockData';
@@ -63,21 +62,7 @@ const Reviews = () => {
           />
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {testimonials.map((review) => (
-              <BorderGlow
-                key={review.id}
-                className="h-full rounded-3xl"
-                edgeSensitivity={32}
-                glowColor="40 80 80"
-                backgroundColor="#060010"
-                borderRadius={24}
-                glowRadius={34}
-                glowIntensity={1}
-                coneSpread={24}
-                colors={['#7c3aed', '#ec4899', '#0ea5e9']}
-                fillOpacity={0.42}
-              >
-                <TestimonialCard {...review} />
-              </BorderGlow>
+              <TestimonialCard key={review.id} {...review} />
             ))}
           </div>
         </div>

@@ -3,6 +3,7 @@ import SectionTitle from '../components/SectionTitle';
 import TestimonialCard from '../components/TestimonialCard';
 import BorderGlow from '../components/BorderGlow';
 import CountUp from '../components/CountUp';
+import ScrollReveal from '../components/ScrollReveal';
 import { testimonials } from '../data/mockData';
 import { FaStar, FaPen } from 'react-icons/fa';
 
@@ -20,10 +21,16 @@ const Reviews = () => {
           <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-4">
             Customer <span className="gradient-text">Reviews</span>
           </h1>
-          <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+          <ScrollReveal
+            containerClassName="max-w-2xl mx-auto"
+            textClassName="text-gray-400 text-lg md:text-xl leading-relaxed"
+            baseOpacity={0.14}
+            baseRotation={2}
+            blurStrength={3}
+          >
             Don't just take our word for it — hear what our members have to say about their
             experience at JERAI FITNESS.
-          </p>
+          </ScrollReveal>
 
           {/* Rating Badge */}
           <div className="inline-flex items-center gap-4 glass-card px-6 py-4 mt-8">

@@ -1,5 +1,6 @@
 import React from 'react';
 import SectionTitle from '../components/SectionTitle';
+import ScrollReveal from '../components/ScrollReveal';
 import { preferences, getIcon } from '../data/mockData';
 import { FaCheckCircle, FaTimesCircle, FaArrowRight } from 'react-icons/fa';
 
@@ -13,10 +14,16 @@ const Preferences = () => {
           <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-4">
             Why <span className="gradient-text">Choose Us</span>
           </h1>
-          <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+          <ScrollReveal
+            containerClassName="max-w-2xl mx-auto"
+            textClassName="text-gray-400 text-lg md:text-xl leading-relaxed"
+            baseOpacity={0.14}
+            baseRotation={2}
+            blurStrength={3}
+          >
             Whether you're a beginner or a seasoned athlete, JERAI FITNESS has been
             designed with you in mind. Discover why thousands trust us with their fitness journey.
-          </p>
+          </ScrollReveal>
         </div>
       </section>
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import SectionTitle from '../components/SectionTitle';
 import CountUp from '../components/CountUp';
+import ScrollReveal from '../components/ScrollReveal';
 import { trainers } from '../data/mockData';
 import { FaCheckCircle, FaHeart, FaBolt, FaGlobe } from 'react-icons/fa';
 
@@ -47,19 +48,31 @@ const About = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <SectionTitle title="Our Mission" subtitle="" center={false} />
-              <p className="text-gray-400 leading-relaxed mb-6">
+              <ScrollReveal
+                containerClassName="mb-6"
+                textClassName="text-gray-400 leading-relaxed"
+                baseOpacity={0.14}
+                baseRotation={2}
+                blurStrength={3}
+              >
                 At JERAI FITNESS, our mission is simple yet powerful: to empower every
                 individual to become the strongest, healthiest version of themselves.
                 We believe that fitness is not just about physical transformation — it's
                 about building mental resilience, fostering community, and creating
                 habits that last a lifetime.
-              </p>
-              <p className="text-gray-400 leading-relaxed mb-6">
+              </ScrollReveal>
+              <ScrollReveal
+                containerClassName="mb-6"
+                textClassName="text-gray-400 leading-relaxed"
+                baseOpacity={0.14}
+                baseRotation={2}
+                blurStrength={3}
+              >
                 Founded in 2014, we've grown from a single gym floor to a
                 comprehensive fitness ecosystem. Our approach combines cutting-edge
                 equipment, evidence-based training methodologies, and genuine human
                 connection.
-              </p>
+              </ScrollReveal>
               <div className="flex flex-wrap gap-6">
                 <div className="text-center">
                   <div className="text-3xl font-extrabold gradient-text">

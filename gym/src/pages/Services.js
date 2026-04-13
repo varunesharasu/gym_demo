@@ -1,6 +1,7 @@
 import React from 'react';
 import SectionTitle from '../components/SectionTitle';
 import PricingCard from '../components/PricingCard';
+import ScrollReveal from '../components/ScrollReveal';
 import { packages, amenities, whyChooseUs, getIcon } from '../data/mockData';
 
 const Services = () => {
@@ -18,10 +19,16 @@ const Services = () => {
           <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-4">
             Our <span className="gradient-text">Services</span>
           </h1>
-          <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+          <ScrollReveal
+            containerClassName="max-w-2xl mx-auto"
+            textClassName="text-gray-400 text-lg md:text-xl leading-relaxed"
+            baseOpacity={0.14}
+            baseRotation={2}
+            blurStrength={3}
+          >
             From beginner-friendly programs to advanced athletic training — discover
             packages, amenities, and everything that makes us the best choice for your fitness journey.
-          </p>
+          </ScrollReveal>
         </div>
       </section>
 

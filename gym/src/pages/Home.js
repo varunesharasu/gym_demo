@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { FaDumbbell, FaArrowRight } from 'react-icons/fa';
 import HeroCarousel from '../components/HeroCarousel';
 import StatCounter from '../components/StatCounter';
@@ -11,7 +10,7 @@ const Home = () => {
   const featuredReview = testimonials[0];
 
   return (
-    <main>
+    <section id="home">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background Image */}
@@ -41,13 +40,13 @@ const Home = () => {
                 state-of-the-art equipment.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Link to="/contact" className="btn-primary inline-flex items-center gap-2">
+                <a href="#contact" onClick={(e) => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); }} className="btn-primary inline-flex items-center gap-2">
                   Book Free Trial
                   <FaArrowRight className="text-sm" />
-                </Link>
-                <Link to="/services" className="btn-outline inline-flex items-center gap-2">
+                </a>
+                <a href="#services" onClick={(e) => { e.preventDefault(); document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' }); }} className="btn-outline inline-flex items-center gap-2">
                   View Plans
-                </Link>
+                </a>
               </div>
             </div>
 
@@ -108,9 +107,9 @@ const Home = () => {
             })}
           </div>
           <div className="text-center mt-10">
-            <Link to="/services" className="btn-outline inline-flex items-center gap-2">
+            <a href="#services" onClick={(e) => { e.preventDefault(); document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' }); }} className="btn-outline inline-flex items-center gap-2">
               Explore All Services <FaArrowRight />
-            </Link>
+            </a>
           </div>
         </div>
       </section>
@@ -124,9 +123,9 @@ const Home = () => {
           />
           <TestimonialCard {...featuredReview} />
           <div className="text-center mt-8">
-            <Link to="/reviews" className="text-royal-400 hover:text-royal-300 font-medium inline-flex items-center gap-2 transition-colors">
+            <a href="#reviews" onClick={(e) => { e.preventDefault(); document.getElementById('reviews')?.scrollIntoView({ behavior: 'smooth' }); }} className="text-royal-400 hover:text-royal-300 font-medium inline-flex items-center gap-2 transition-colors">
               Read All Reviews <FaArrowRight />
-            </Link>
+            </a>
           </div>
         </div>
       </section>
@@ -144,16 +143,16 @@ const Home = () => {
             Your first session is on us.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link to="/contact" className="bg-white text-gray-900 font-semibold px-8 py-3 rounded-xl hover:bg-gray-100 transition-all duration-300 active:scale-95 shadow-lg">
+            <a href="#contact" onClick={(e) => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); }} className="bg-white text-gray-900 font-semibold px-8 py-3 rounded-xl hover:bg-gray-100 transition-all duration-300 active:scale-95 shadow-lg">
               Get Started Today
-            </Link>
-            <Link to="/about" className="border-2 border-white/30 text-white font-semibold px-8 py-3 rounded-xl hover:bg-white/10 transition-all duration-300 active:scale-95">
+            </a>
+            <a href="#about" onClick={(e) => { e.preventDefault(); document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' }); }} className="border-2 border-white/30 text-white font-semibold px-8 py-3 rounded-xl hover:bg-white/10 transition-all duration-300 active:scale-95">
               Learn More
-            </Link>
+            </a>
           </div>
         </div>
       </section>
-    </main>
+    </section>
   );
 };
 

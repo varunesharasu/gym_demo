@@ -20,7 +20,7 @@ const milestones = [
 
 const About = () => {
   return (
-    <main className="pt-20">
+    <section id="about">
       {/* Hero */}
       <section className="relative py-20 md:py-28 overflow-hidden">
         <div
@@ -164,7 +164,7 @@ const About = () => {
           </div>
         </div>
       </section>
-    </main>
+    </section>
   );
 };
 

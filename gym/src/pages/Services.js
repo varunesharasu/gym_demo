@@ -5,7 +5,7 @@ import { packages, amenities, whyChooseUs, getIcon } from '../data/mockData';
 
 const Services = () => {
   return (
-    <main className="pt-20">
+    <section id="services">
       {/* Hero */}
       <section className="relative py-20 md:py-28 overflow-hidden">
         <div
@@ -95,7 +95,7 @@ const Services = () => {
           </div>
         </div>
       </section>
-    </main>
+    </section>
   );
 };
 

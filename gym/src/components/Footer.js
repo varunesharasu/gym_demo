@@ -1,16 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { FaDumbbell, FaInstagram, FaFacebookF, FaTwitter, FaYoutube, FaHeart } from 'react-icons/fa';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const quickLinks = [
-    { path: '/', label: 'Home' },
-    { path: '/about', label: 'About Us' },
-    { path: '/services', label: 'Services' },
-    { path: '/reviews', label: 'Reviews' },
-    { path: '/contact', label: 'Contact' },
+    { href: '#home', label: 'Home' },
+    { href: '#about', label: 'About Us' },
+    { href: '#services', label: 'Services' },
+    { href: '#reviews', label: 'Reviews' },
+    { href: '#contact', label: 'Contact' },
   ];
 
   const services = [
@@ -28,19 +27,31 @@ const Footer = () => {
     { icon: FaYoutube, url: '#', label: 'YouTube' },
   ];
 
+  const handleNavClick = (href) => {
+    const el = document.getElementById(href.substring(1));
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <footer className="bg-gray-950 border-t border-gray-800/50" role="contentinfo">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <Link to="/" className="flex items-center gap-2 mb-4 group" aria-label="JERAI FITNESS">
+            <a
+              href="#home"
+              onClick={(e) => { e.preventDefault(); handleNavClick('#home'); }}
+              className="flex items-center gap-2 mb-4 group"
+              aria-label="JERAI FITNESS"
+            >
               <FaDumbbell className="text-royal-500 text-2xl group-hover:rotate-12 transition-transform" />
               <span className="text-xl font-extrabold">
                 <span className="text-white">JERAI</span>
                 <span className="gradient-text ml-1">FITNESS</span>
               </span>
-            </Link>
+            </a>
             <p className="text-gray-500 text-sm leading-relaxed mb-6">
               Transform your body and mind with world-class equipment, expert trainers,
               and a motivating community. Your fitness journey starts here.
@@ -68,13 +79,14 @@ const Footer = () => {
             </h3>
             <ul className="space-y-3">
               {quickLinks.map((link) => (
-                <li key={link.path}>
-                  <Link
-                    to={link.path}
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
                     className="text-gray-500 hover:text-royal-400 transition-colors text-sm"
                   >
                     {link.label}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>

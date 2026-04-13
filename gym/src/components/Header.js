@@ -1,31 +1,48 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
 import { FaBars, FaTimes, FaDumbbell } from 'react-icons/fa';
 
 const navLinks = [
-  { path: '/', label: 'Home' },
-  { path: '/about', label: 'About' },
-  { path: '/services', label: 'Services' },
-  { path: '/preferences', label: 'Preferences' },
-  { path: '/reviews', label: 'Reviews' },
-  { path: '/contact', label: 'Contact' },
+  { href: '#home', label: 'Home' },
+  { href: '#about', label: 'About' },
+  { href: '#services', label: 'Services' },
+  { href: '#preferences', label: 'Preferences' },
+  { href: '#reviews', label: 'Reviews' },
+  { href: '#contact', label: 'Contact' },
 ];
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const location = useLocation();
+  const [activeSection, setActiveSection] = useState('#home');
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+
+      // Determine active section
+      const sections = navLinks.map(link => link.href.substring(1));
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const el = document.getElementById(sections[i]);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= 100) {
+            setActiveSection(`#${sections[i]}`);
+            break;
+          }
+        }
+      }
+    };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu on route change
-  useEffect(() => {
+  const handleNavClick = (href) => {
     setIsOpen(false);
-  }, [location.pathname]);
+    const el = document.getElementById(href.substring(1));
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <header
@@ -42,8 +59,9 @@ const Header = () => {
         aria-label="Main navigation"
       >
         {/* Logo */}
-        <Link
-          to="/"
+        <a
+          href="#home"
+          onClick={(e) => { e.preventDefault(); handleNavClick('#home'); }}
           className="flex items-center gap-2 group"
           aria-label="JERAI FITNESS home"
         >
@@ -52,29 +70,33 @@ const Header = () => {
             <span className="text-white">JERAI</span>
             <span className="gradient-text ml-1">FITNESS</span>
           </span>
-        </Link>
+        </a>
 
         {/* Desktop Nav */}
         <ul className="hidden md:flex items-center gap-1">
           {navLinks.map((link) => (
-            <li key={link.path}>
-              <Link
-                to={link.path}
+            <li key={link.href}>
+              <a
+                href={link.href}
+                onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                  location.pathname === link.path
+                  activeSection === link.href
                     ? 'text-royal-400 bg-royal-500/10'
                     : 'text-gray-400 hover:text-white hover:bg-white/5'
                 }`}
-                aria-current={location.pathname === link.path ? 'page' : undefined}
               >
                 {link.label}
-              </Link>
+              </a>
             </li>
           ))}
           <li className="ml-4">
-            <Link to="/contact" className="btn-primary text-sm !px-6 !py-2.5">
+            <a
+              href="#contact"
+              onClick={(e) => { e.preventDefault(); handleNavClick('#contact'); }}
+              className="btn-primary text-sm !px-6 !py-2.5"
+            >
               Join Now
-            </Link>
+            </a>
           </li>
         </ul>
 
@@ -99,25 +121,26 @@ const Header = () => {
       >
         <div className="bg-gray-950/98 backdrop-blur-md border-t border-gray-800/50 px-4 py-4 space-y-1 animate-slide-down">
           {navLinks.map((link) => (
-            <Link
-              key={link.path}
-              to={link.path}
+            <a
+              key={link.href}
+              href={link.href}
+              onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
               className={`block px-4 py-3 rounded-xl text-base font-medium transition-all duration-200 ${
-                location.pathname === link.path
+                activeSection === link.href
                   ? 'text-royal-400 bg-royal-500/10'
                   : 'text-gray-400 hover:text-white hover:bg-white/5'
               }`}
-              aria-current={location.pathname === link.path ? 'page' : undefined}
             >
               {link.label}
-            </Link>
+            </a>
           ))}
-          <Link
-            to="/contact"
+          <a
+            href="#contact"
+            onClick={(e) => { e.preventDefault(); handleNavClick('#contact'); }}
             className="block text-center btn-primary mt-4 !py-3"
           >
             Join Now
-          </Link>
+          </a>
         </div>
       </div>
     </header>

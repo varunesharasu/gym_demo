@@ -10,7 +10,7 @@ const Reviews = () => {
   ).toFixed(1);
 
   return (
-    <main className="pt-20">
+    <section id="reviews">
       {/* Hero */}
       <section className="relative py-20 md:py-28 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-gray-950 via-royal-950/30 to-gray-950" aria-hidden="true" />
@@ -75,7 +75,7 @@ const Reviews = () => {
           </button>
         </div>
       </section>
-    </main>
+    </section>
   );
 };
 

@@ -1,12 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import SectionTitle from '../components/SectionTitle';
 import { preferences, getIcon } from '../data/mockData';
 import { FaCheckCircle, FaTimesCircle, FaArrowRight } from 'react-icons/fa';
 
 const Preferences = () => {
   return (
-    <main className="pt-20">
+    <section id="preferences">
       {/* Hero */}
       <section className="relative py-20 md:py-28 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-royal-950 via-gray-950 to-gray-950" aria-hidden="true" />
@@ -127,12 +126,12 @@ const Preferences = () => {
           <p className="text-royal-200/70 text-lg mb-8">
             Your first session is completely free. No commitments, no pressure — just results.
           </p>
-          <Link to="/contact" className="btn-primary inline-flex items-center gap-2 text-lg">
+          <a href="#contact" onClick={(e) => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); }} className="btn-primary inline-flex items-center gap-2 text-lg">
             Book Your Free Trial <FaArrowRight />
-          </Link>
+          </a>
         </div>
       </section>
-    </main>
+    </section>
   );
 };
 

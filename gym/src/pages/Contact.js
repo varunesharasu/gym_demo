@@ -26,7 +26,7 @@ const Contact = () => {
   };
 
   return (
-    <main className="pt-20">
+    <section id="contact">
       {/* Hero */}
       <section className="relative py-20 md:py-28 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-royal-950 via-gray-950 to-gray-950" aria-hidden="true" />
@@ -222,7 +222,7 @@ const Contact = () => {
           </div>
         </div>
       </section>
-    </main>
+    </section>
   );
 };
 

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import SectionTitle from '../components/SectionTitle';
 import PricingCard from '../components/PricingCard';
 import BorderGlow from '../components/BorderGlow';
-import { packages, amenities, whyChooseUs, trainers, transformations, getIcon } from '../data/mockData';
+import { packages, amenities, whyChooseUs, trainers, getIcon } from '../data/mockData';
 
 const Services = () => {
   const [billingPeriod, setBillingPeriod] = useState('monthly');
@@ -242,65 +242,6 @@ const Services = () => {
         </div>
       </section>
 
-      {/* ============ CLIENT TRANSFORMATIONS ============ */}
-      <section className="section-padding">
-        <div className="max-w-7xl mx-auto">
-          <SectionTitle
-            title="Client Transformations"
-            subtitle="Real results from real members who trusted the process"
-          />
-          
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {transformations.map((client, idx) => (
-              <BorderGlow
-                key={client.id}
-                className="h-full rounded-2xl"
-                edgeSensitivity={30}
-                glowColor="40 80 80"
-                backgroundColor="#060010"
-                borderRadius={22}
-                glowRadius={26}
-                glowIntensity={1}
-                coneSpread={24}
-                colors={['#7c3aed', '#ec4899', '#0ea5e9']}
-                fillOpacity={0.38}
-              >
-                <div className="glass-card relative overflow-hidden group">
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <div className="absolute -top-10 -right-10 h-28 w-28 rounded-full bg-royal-500/10 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                  <div className="relative grid grid-cols-2 gap-2 h-40 bg-gray-800/30 border-b border-gray-800/50 p-4">
-                    <div className="absolute inset-x-6 top-2 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-                    <div className="rounded-xl bg-gradient-to-br from-orange-500/20 to-orange-600/20 border border-orange-500/30 flex flex-col items-center justify-center shadow-inner shadow-orange-950/20">
-                      <p className="text-orange-300 text-xs font-semibold mb-2">Before</p>
-                      <p className="text-white font-bold text-lg">{client.stats.before}</p>
-                    </div>
-                    <div className="rounded-xl bg-gradient-to-br from-green-500/20 to-green-600/20 border border-green-500/30 flex flex-col items-center justify-center shadow-inner shadow-green-950/20">
-                      <p className="text-green-300 text-xs font-semibold mb-2">After</p>
-                      <p className="text-white font-bold text-lg">{client.stats.after}</p>
-                    </div>
-                  </div>
-                  
-                  <div className="p-6">
-                    <h3 className="text-white font-semibold text-lg mb-2">{client.name}</h3>
-                    <p className="text-royal-400 text-sm font-medium mb-3">{client.duration}</p>
-                    <p className="text-gray-400 text-sm leading-relaxed mb-4">{client.story}</p>
-                    
-                    <div className="flex items-center justify-between text-xs pt-3 border-t border-white/5">
-                      <span className="text-green-400 font-semibold">
-                        ✓ {client.weight}
-                      </span>
-                      <button className="text-royal-400 hover:text-royal-300 font-semibold transition-colors">
-                        Learn More →
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </BorderGlow>
-            ))}
-          </div>
-        </div>
-      </section>
     </section>
   );
 };

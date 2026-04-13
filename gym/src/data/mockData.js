@@ -381,34 +381,6 @@ export const faqItems = [
   },
 ];
 
-// Transformations Data
-export const transformations = [
-  {
-    id: 1,
-    name: "Sarah Johnson",
-    duration: "6 months",
-    weight: "32 kg",
-    story: "From zero fitness to running marathons. Sarah's dedication and our trainers' guidance changed her life completely.",
-    stats: { before: "95kg", after: "63kg", bmi: "31.2 → 20.8" },
-  },
-  {
-    id: 2,
-    name: "Mike Chen",
-    duration: "8 months",
-    weight: "18 kg loss, 10 kg muscle gain",
-    story: "A complete body recomposition. Mike combined strength training with proper nutrition to build muscle while losing fat.",
-    stats: { before: "88kg (38% BF)", after: "80kg (22% BF)", strength: "Bench: 80kg → 140kg" },
-  },
-  {
-    id: 3,
-    name: "Jessica Williams",
-    duration: "4 months",
-    weight: "22 kg",
-    story: "Post-pregnancy fitness journey. Jessica regained her strength and confidence with our women's-focused programs.",
-    stats: { before: "78kg", after: "56kg", energy: "Increased by 85%" },
-  },
-];
-
 // Feature Icons Mapping (for pricing cards)
 export const featureIcons = {
   "Access to gym floor": "FaDumbbell",

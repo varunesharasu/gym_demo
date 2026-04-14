@@ -101,50 +101,7 @@ const Preferences = () => {
         </div>
       </section>
 
-      {/* Membership Packages — Monthly & Yearly Toggle */}
-      <section className="section-padding">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col items-center gap-6 mb-12">
-            <SectionTitle
-              title="Membership Plans"
-              subtitle="Flexible pricing for every budget — switch between monthly and yearly"
-            />
 
-            {/* Billing Toggle */}
-            <div className="flex items-center gap-4 bg-gray-900/50 border border-gray-800/50 rounded-full p-2 backdrop-blur">
-              <button
-                onClick={() => setBillingPeriod('monthly')}
-                className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 ${
-                  billingPeriod === 'monthly'
-                    ? 'bg-gradient-to-r from-royal-500 to-royal-600 text-white shadow-lg shadow-royal-500/30'
-                    : 'text-gray-400 hover:text-white'
-                }`}
-              >
-                Monthly
-              </button>
-              <button
-                onClick={() => setBillingPeriod('yearly')}
-                className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 ${
-                  billingPeriod === 'yearly'
-                    ? 'bg-gradient-to-r from-royal-500 to-royal-600 text-white shadow-lg shadow-royal-500/30'
-                    : 'text-gray-400 hover:text-white'
-                }`}
-              >
-                Yearly<span className="ml-2 text-xs bg-green-500/30 text-green-300 px-2 py-1 rounded-full">Save 20%</span>
-              </button>
-            </div>
-          </div>
-
-          {/* Pricing Cards */}
-          <div className="grid md:grid-cols-3 gap-8 items-start max-w-5xl mx-auto">
-            {packages.map((pkg) => (
-              <div key={pkg.id} className="group">
-                <PricingCard {...pkg} billingPeriod={billingPeriod} />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* CTA */}
       <section className="section-padding bg-gradient-to-r from-royal-950 via-royal-900 to-royal-950 border-t border-royal-800/30">

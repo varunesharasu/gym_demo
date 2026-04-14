@@ -5,7 +5,7 @@ import CountUp from '../components/CountUp';
 import ScrollReveal from '../components/ScrollReveal';
 import BorderGlow from '../components/BorderGlow';
 import { testimonials, faqItems } from '../data/mockData';
-import { FaStar, FaPen, FaChevronDown, FaQuestionCircle } from 'react-icons/fa';
+import { FaStar, FaPen, FaChevronDown } from 'react-icons/fa';
 
 const FAQItem = ({ item, isOpen, onToggle }) => {
   const handleKeyDown = (e) => {

@@ -7,39 +7,12 @@ import {
 import { GiMuscleUp, GiLockers, GiWeightLiftingUp } from 'react-icons/gi';
 import { MdSpa } from 'react-icons/md';
 
-export const offers = [
-  {
-    id: 1,
-    title: "Transform Your Body",
-    subtitle: "Start your fitness journey today",
-    discount: "50% OFF",
-    description: "Get your first month at half price. Limited time offer for new members.",
-    cta: "Claim Offer",
-  },
-  {
-    id: 2,
-    title: "Free Personal Training",
-    subtitle: "Expert guidance, zero cost",
-    discount: "FREE",
-    description: "Book a complimentary one-on-one session with our certified trainers.",
-    cta: "Book Now",
-  },
-  {
-    id: 3,
-    title: "Buddy Pass Special",
-    subtitle: "Train together, save together",
-    discount: "2 FOR 1",
-    description: "Bring a friend and both enjoy full membership benefits at the price of one.",
-    cta: "Get Pass",
-  },
-];
-
 export const packages = [
   {
     id: 1,
     name: "Basic",
-    price: 29,
-    period: "month",
+    monthlyPrice: 29,
+    yearlyPrice: 278,
     popular: false,
     features: [
       "Access to gym floor",
@@ -57,8 +30,8 @@ export const packages = [
   {
     id: 2,
     name: "Pro",
-    price: 59,
-    period: "month",
+    monthlyPrice: 59,
+    yearlyPrice: 566,
     popular: true,
     features: [
       "Full gym access 24/7",
@@ -75,8 +48,8 @@ export const packages = [
   {
     id: 3,
     name: "Elite",
-    price: 99,
-    period: "month",
+    monthlyPrice: 99,
+    yearlyPrice: 950,
     popular: false,
     features: [
       "Everything in Pro",
@@ -137,6 +110,9 @@ export const trainers = [
     experience: "12 years",
     speciality: "Powerlifting & Bodybuilding",
     initials: "AR",
+    languages: ["English", "Spanish"],
+    specialization: "Certified Strength & Conditioning Specialist (CSCS). Expert in progressive overload programming, Olympic lifting technique, and sport-specific strength protocols. Has trained 3 national-level powerlifters.",
+    overview: "Alex brings over a decade of elite coaching experience. Starting as a competitive powerlifter, he transitioned into coaching after earning his CSCS and NSCA-CPT certifications. His philosophy centers on evidence-based training with meticulous form correction. Alex has helped over 500 clients achieve transformative results, from beginners to competitive athletes.",
   },
   {
     id: 2,
@@ -145,6 +121,9 @@ export const trainers = [
     experience: "8 years",
     speciality: "Vinyasa & Yin Yoga",
     initials: "SC",
+    languages: ["English", "Mandarin", "Japanese"],
+    specialization: "RYT-500 Certified Yoga Instructor with advanced training in therapeutic yoga and mobility work. Specializes in breath-work integration, injury rehabilitation through yoga, and flexibility optimization for athletes.",
+    overview: "Sarah discovered yoga during her recovery from a sports injury and has since dedicated her career to helping others find balance through movement. With 8 years of teaching experience and over 2,000 hours of training, she creates accessible classes that challenge both body and mind. Her sessions blend traditional yoga philosophy with modern sports science.",
   },
   {
     id: 3,
@@ -153,6 +132,9 @@ export const trainers = [
     experience: "10 years",
     speciality: "Functional Training",
     initials: "MJ",
+    languages: ["English", "French"],
+    specialization: "ACE-certified Personal Trainer and CrossFit Level 2 Coach. Expert in metabolic conditioning, circuit design, and fat-loss programming. Certified in TRX, Kettlebell Athletics, and battle rope training systems.",
+    overview: "Marcus is known for his high-energy, results-driven approach to fitness. A former college football player, he channels his athletic background into designing intense yet safe workout programs. He has led over 3,000 group HIIT sessions and specializes in transforming sedentary individuals into confident, capable athletes. His boot camps are consistently the most popular classes at JERAI.",
   },
   {
     id: 4,
@@ -161,6 +143,9 @@ export const trainers = [
     experience: "6 years",
     speciality: "Sports Nutrition & Meal Planning",
     initials: "EP",
+    languages: ["English", "Russian", "German"],
+    specialization: "Registered Dietitian (RD) with a Master's in Sports Nutrition. Certified Specialist in Sports Dietetics (CSSD). Expert in macro-periodization, supplement science, and metabolic optimization for performance and body composition goals.",
+    overview: "Elena combines her clinical nutrition background with a deep passion for fitness to create holistic wellness plans. Having worked with professional sports teams in Europe before joining JERAI, she brings a world-class perspective to personalized nutrition. Her meal plans are known for being practical, delicious, and scientifically tailored to each client's training cycle.",
   },
 ];
 
@@ -288,18 +273,22 @@ export const preferences = {
     "Community events & challenges monthly",
     "Complimentary towel & water service",
     "State-of-the-art air purification system",
-  ],
-  comparison: [
-    { feature: "24/7 Access", us: true, others: false },
-    { feature: "Certified Trainers", us: true, others: "Some" },
-    { feature: "Pool & Sauna", us: true, others: false },
-    { feature: "No Lock-in Contracts", us: true, others: false },
-    { feature: "Nutrition Planning", us: true, others: false },
-    { feature: "Free Parking", us: true, others: "Limited" },
-    { feature: "Group Classes Included", us: true, others: "Extra cost" },
-    { feature: "Modern Equipment", us: true, others: "Varies" },
+    "Personalized workout plans powered by AI",
+    "In-house physiotherapy & injury recovery",
+    "Free body composition analysis monthly",
+    "Premium Bluetooth speaker zones",
+    "Dedicated women's workout area",
+    "On-site childcare during peak hours",
   ],
 };
+
+// Fitness calculator links for Resources dropdown
+export const fitnessCalculators = [
+  { name: "Body Fat Calculator", url: "/calculators/body-fat.html" },
+  { name: "BMI Calculator", url: "/calculators/bmi.html" },
+  { name: "Water Intake Calculator", url: "/calculators/water-intake.html" },
+  { name: "Protein Intake Calculator", url: "/calculators/protein-intake.html" },
+];
 
 // Icon mapping helper
 export const iconMap = {
@@ -347,37 +336,57 @@ export const classSchedule = [
   },
 ];
 
-// FAQ Data
+// FAQ Data — used in Reviews page
 export const faqItems = [
   {
     id: 1,
-    question: "What are the membership cancellation terms?",
-    answer: "We offer month-to-month memberships with no long-term contracts. You can cancel anytime with 30 days' notice. No hidden fees or penalties.",
+    question: "Can I choose my personal trainer?",
+    answer: "Absolutely! We believe the trainer-client relationship is key to success. During your initial consultation, you can meet our team and choose the trainer whose style and expertise best match your goals. You can also switch trainers at any time.",
   },
   {
     id: 2,
-    question: "Do you offer free trial or introductory sessions?",
-    answer: "Yes! New members get a complimentary fitness assessment and one week of free access to explore our facilities and try group classes.",
+    question: "Are there family discounts?",
+    answer: "Yes! We offer a Family Plan where households of 2+ members receive 15% off each membership. For families of 4 or more, the discount increases to 25%. All family members enjoy full access to their chosen tier's facilities and classes.",
   },
   {
     id: 3,
-    question: "Are personal training sessions included in all memberships?",
-    answer: "Personal training is included with Pro and Elite memberships. Basic members can add PT sessions at discounted rates.",
+    question: "Can I cancel my subscription?",
+    answer: "Of course. We offer month-to-month memberships with no long-term contracts. You can cancel anytime with 30 days' notice through your member portal or at the front desk. No hidden fees, no hassle — we want you here because you want to be.",
   },
   {
     id: 4,
-    question: "What is the age requirement to join?",
-    answer: "Members must be 18 years or older. We offer special youth programs for ages 13-17 with parental consent.",
+    question: "Should I bring any equipment?",
+    answer: "No equipment is needed! We provide everything from weights and machines to yoga mats, resistance bands, and boxing gloves. Just bring comfortable workout clothes, athletic shoes, and a water bottle. Towels are complimentary for all members.",
   },
   {
     id: 5,
-    question: "Can I bring a guest to the gym?",
-    answer: "Elite members can bring 2 guests per month free of charge. Other members can add a guest day pass for $15.",
+    question: "Is There An Advanced Class?",
+    answer: "Yes, we offer multiple advanced-level classes including Olympic Lifting, Advanced HIIT, CrossFit WODs, and Competition Prep sessions. These classes are designed for experienced exercisers and include progressive programming to continually challenge you.",
   },
   {
     id: 6,
-    question: "Do you have childcare or kids' programs?",
-    answer: "We offer supervised childcare during peak hours (9 AM—2 PM, 5 PM—8 PM) for members' children ages 6 months—12 years.",
+    question: "How Often Can I Hit the Gym?",
+    answer: "As often as you like! All memberships include unlimited gym access. Our facility is open 24/7, 365 days a year. Most of our successful members train 3-5 times per week, but you're welcome to visit as frequently as your schedule and recovery allow.",
+  },
+  {
+    id: 7,
+    question: "Do You have a private or personal coaching facility?",
+    answer: "Yes! Our Elite and Pro members have access to private training rooms that can be booked for one-on-one sessions. We have 4 fully-equipped private studios with premium flooring, mirrors, and dedicated equipment — perfect for focused personal training.",
+  },
+  {
+    id: 8,
+    question: "Would you coach when we have injuries or physical restrictions?",
+    answer: "Absolutely. Our trainers are certified in corrective exercise and injury rehabilitation. We work closely with physiotherapists to create modified programs that respect your limitations while still progressing toward your goals. Your safety always comes first.",
+  },
+  {
+    id: 9,
+    question: "What to expect on a one-on-one session?",
+    answer: "Your first session includes a comprehensive fitness assessment (body composition, mobility screening, and goal discussion). From there, your trainer will design a personalized workout and guide you through every exercise with hands-on coaching. Sessions are typically 60 minutes and include warm-up, training, and cooldown.",
+  },
+  {
+    id: 10,
+    question: "What makes F3 stand out from other gyms?",
+    answer: "JERAI FITNESS (F3) stands out with our combination of 24/7 access, world-class facilities (including pool, sauna, and spa), certified expert trainers, no lock-in contracts, and a genuine community atmosphere. Our 95% member satisfaction rate and 10+ years of excellence speak for themselves.",
   },
 ];
 

@@ -1,15 +1,65 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SectionTitle from '../components/SectionTitle';
 import TestimonialCard from '../components/TestimonialCard';
 import CountUp from '../components/CountUp';
 import ScrollReveal from '../components/ScrollReveal';
-import { testimonials } from '../data/mockData';
-import { FaStar, FaPen } from 'react-icons/fa';
+import BorderGlow from '../components/BorderGlow';
+import { testimonials, faqItems } from '../data/mockData';
+import { FaStar, FaPen, FaChevronDown, FaQuestionCircle } from 'react-icons/fa';
+
+const FAQItem = ({ item, isOpen, onToggle }) => {
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      onToggle();
+    }
+  };
+
+  return (
+    <div className="border-b border-gray-800/40 last:border-0">
+      <button
+        className="w-full flex items-center justify-between px-6 py-5 text-left group transition-all duration-200 hover:bg-gray-800/20 min-h-[56px] focus:outline-none focus:ring-2 focus:ring-royal-500/30 focus:ring-inset rounded-xl"
+        onClick={onToggle}
+        onKeyDown={handleKeyDown}
+        aria-expanded={isOpen}
+        aria-controls={`faq-answer-${item.id}`}
+        id={`faq-question-${item.id}`}
+      >
+        <span className={`font-medium text-sm md:text-base pr-4 transition-colors duration-200 ${isOpen ? 'text-royal-300' : 'text-gray-300 group-hover:text-white'}`}>
+          {item.question}
+        </span>
+        <div className={`flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-300 ${
+          isOpen ? 'bg-royal-500/20 rotate-180' : 'bg-gray-800/50 group-hover:bg-gray-800'
+        }`}>
+          <FaChevronDown className={`text-xs transition-colors ${isOpen ? 'text-royal-400' : 'text-gray-500'}`} />
+        </div>
+      </button>
+      <div
+        id={`faq-answer-${item.id}`}
+        role="region"
+        aria-labelledby={`faq-question-${item.id}`}
+        className={`overflow-hidden transition-all duration-300 ease-in-out ${
+          isOpen ? 'max-h-[300px] opacity-100' : 'max-h-0 opacity-0'
+        }`}
+      >
+        <div className="px-6 pb-5 pt-0">
+          <p className="text-gray-400 text-sm leading-relaxed">{item.answer}</p>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const Reviews = () => {
+  const [openFAQ, setOpenFAQ] = useState(null);
+
   const avgRating = (
     testimonials.reduce((sum, t) => sum + t.rating, 0) / testimonials.length
   ).toFixed(1);
+
+  const toggleFAQ = (id) => {
+    setOpenFAQ(openFAQ === id ? null : id);
+  };
 
   return (
     <section id="reviews">
@@ -45,9 +95,9 @@ const Reviews = () => {
                   />
                 ))}
               </div>
-                <p className="text-gray-500 text-sm">
-                  Based on <CountUp to={testimonials.length} duration={1.25} className="inline-block" /> reviews
-                </p>
+              <p className="text-gray-500 text-sm">
+                Based on <CountUp to={testimonials.length} duration={1.25} className="inline-block" /> reviews
+              </p>
             </div>
           </div>
         </div>
@@ -68,8 +118,42 @@ const Reviews = () => {
         </div>
       </section>
 
+      {/* ============ FAQ SECTION ============ */}
+      <section className="section-padding bg-gray-900/30 border-y border-gray-800/50">
+        <div className="max-w-3xl mx-auto">
+          <SectionTitle
+            title="Frequently Asked Questions"
+            subtitle="Got questions? We've got answers."
+          />
+
+          <BorderGlow
+            className="rounded-2xl"
+            edgeSensitivity={30}
+            glowColor="40 80 80"
+            backgroundColor="#060010"
+            borderRadius={22}
+            glowRadius={26}
+            glowIntensity={1}
+            coneSpread={24}
+            colors={['#7c3aed', '#ec4899', '#0ea5e9']}
+            fillOpacity={0.38}
+          >
+            <div className="glass-card overflow-hidden divide-y divide-gray-800/30">
+              {faqItems.map((item) => (
+                <FAQItem
+                  key={item.id}
+                  item={item}
+                  isOpen={openFAQ === item.id}
+                  onToggle={() => toggleFAQ(item.id)}
+                />
+              ))}
+            </div>
+          </BorderGlow>
+        </div>
+      </section>
+
       {/* Leave Review CTA */}
-      <section className="section-padding bg-gray-900/30 border-t border-gray-800/50">
+      <section className="section-padding">
         <div className="max-w-2xl mx-auto text-center">
           <div className="w-16 h-16 rounded-2xl bg-royal-500/10 flex items-center justify-center mx-auto mb-6">
             <FaPen className="text-royal-400 text-2xl" />

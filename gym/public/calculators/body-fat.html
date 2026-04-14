@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Body Fat Calculator — JERAI FITNESS</title>
+  <meta name="description" content="Estimate your body fat percentage using the U.S. Navy method. Free, accurate, and easy to use." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #030712;
+      color: #f3f4f6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1rem;
+    }
+    .container { max-width: 480px; width: 100%; }
+    .brand { text-align: center; margin-bottom: 2rem; }
+    .brand h2 { font-size: 1.1rem; font-weight: 800; letter-spacing: -0.02em; }
+    .brand h2 span { color: #2563eb; }
+    .card {
+      background: rgba(17, 24, 39, 0.6);
+      border: 1px solid rgba(55, 65, 81, 0.5);
+      border-radius: 1.25rem;
+      padding: 2rem;
+      backdrop-filter: blur(12px);
+    }
+    h1 { font-size: 1.75rem; font-weight: 800; margin-bottom: 0.5rem; text-align: center; }
+    h1 span {
+      background: linear-gradient(135deg, #2563eb, #1a4fd4);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .subtitle { color: #9ca3af; text-align: center; font-size: 0.875rem; margin-bottom: 1.5rem; }
+    .form-group { margin-bottom: 1.25rem; }
+    label { display: block; color: #9ca3af; font-size: 0.875rem; font-weight: 500; margin-bottom: 0.5rem; }
+    input, select {
+      width: 100%; background: rgba(31, 41, 55, 0.5); border: 1px solid rgba(55, 65, 81, 0.5);
+      border-radius: 0.75rem; padding: 0.75rem 1rem; color: #f3f4f6;
+      font-size: 1rem; font-family: inherit; transition: border-color 0.2s; outline: none;
+    }
+    input:focus, select:focus { border-color: rgba(37, 99, 235, 0.5); box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15); }
+    select option { background: #1f2937; color: #f3f4f6; }
+    .gender-toggle {
+      display: flex; gap: 0.5rem; margin-bottom: 1.5rem;
+      background: rgba(31, 41, 55, 0.5); border-radius: 0.75rem; padding: 0.25rem;
+    }
+    .gender-toggle button {
+      flex: 1; padding: 0.5rem; border: none; border-radius: 0.5rem;
+      font-family: inherit; font-size: 0.875rem; font-weight: 600;
+      cursor: pointer; transition: all 0.2s; color: #9ca3af; background: transparent;
+    }
+    .gender-toggle button.active {
+      background: linear-gradient(135deg, #2563eb, #1a4fd4);
+      color: white; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    }
+    .btn {
+      width: 100%; padding: 0.875rem; border: none; border-radius: 0.75rem;
+      font-family: inherit; font-size: 1rem; font-weight: 700; cursor: pointer;
+      background: linear-gradient(135deg, #2563eb, #1a4fd4); color: white;
+      transition: all 0.2s; box-shadow: 0 4px 16px rgba(37, 99, 235, 0.25); margin-top: 0.5rem;
+    }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4); }
+    .btn:active { transform: scale(0.98); }
+    .result {
+      margin-top: 1.5rem; padding: 1.5rem; background: rgba(31, 41, 55, 0.4);
+      border-radius: 1rem; text-align: center; display: none;
+    }
+    .result.show { display: block; animation: fadeIn 0.3s ease; }
+    .result-value {
+      font-size: 3rem; font-weight: 800;
+      background: linear-gradient(135deg, #2563eb, #1a4fd4);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .result-label { color: #9ca3af; font-size: 0.875rem; margin-top: 0.25rem; }
+    .result-category {
+      margin-top: 0.75rem; padding: 0.5rem 1rem; border-radius: 0.5rem;
+      font-size: 0.875rem; font-weight: 600; display: inline-block;
+    }
+    .cat-essential { background: rgba(239, 68, 68, 0.15); color: #f87171; }
+    .cat-athlete { background: rgba(34, 197, 94, 0.15); color: #4ade80; }
+    .cat-fitness { background: rgba(59, 130, 246, 0.15); color: #60a5fa; }
+    .cat-average { background: rgba(251, 191, 36, 0.15); color: #fbbf24; }
+    .cat-obese { background: rgba(239, 68, 68, 0.15); color: #f87171; }
+    .row { display: flex; gap: 1rem; }
+    .row .form-group { flex: 1; }
+    .hip-field { display: none; }
+    .hip-field.show { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    @media (max-width: 480px) { body { padding: 1rem 0.75rem; } .card { padding: 1.5rem; } h1 { font-size: 1.45rem; } .result-value { font-size: 2.5rem; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="brand"><h2>JERAI <span>FITNESS</span></h2></div>
+    <div class="card">
+      <h1>Body Fat <span>Calculator</span></h1>
+      <p class="subtitle">Estimate your body fat percentage using the U.S. Navy method</p>
+
+      <div class="gender-toggle" role="radiogroup" aria-label="Gender selection">
+        <button class="active" onclick="setGender('male')" role="radio" aria-checked="true">Male</button>
+        <button onclick="setGender('female')" role="radio" aria-checked="false">Female</button>
+      </div>
+
+      <form onsubmit="calculate(event)">
+        <div class="row">
+          <div class="form-group">
+            <label for="height">Height (cm)</label>
+            <input type="number" id="height" placeholder="175" step="0.1" min="1" required />
+          </div>
+          <div class="form-group">
+            <label for="weight">Weight (kg)</label>
+            <input type="number" id="weight" placeholder="75" step="0.1" min="1" required />
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group">
+            <label for="waist">Waist (cm)</label>
+            <input type="number" id="waist" placeholder="80" step="0.1" min="1" required />
+          </div>
+          <div class="form-group">
+            <label for="neck">Neck (cm)</label>
+            <input type="number" id="neck" placeholder="37" step="0.1" min="1" required />
+          </div>
+        </div>
+        <div class="form-group hip-field" id="hip-group">
+          <label for="hip">Hip (cm) — required for women</label>
+          <input type="number" id="hip" placeholder="95" step="0.1" min="1" />
+        </div>
+
+        <button type="submit" class="btn">Calculate Body Fat</button>
+      </form>
+
+      <div id="result" class="result" role="status" aria-live="polite">
+        <div class="result-value" id="bf-value">—</div>
+        <div class="result-label">Body Fat Percentage</div>
+        <div class="result-category" id="bf-category"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let gender = 'male';
+
+    function setGender(g) {
+      gender = g;
+      const btns = document.querySelectorAll('.gender-toggle button');
+      btns.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-checked', 'false'); });
+      btns[g === 'male' ? 0 : 1].classList.add('active');
+      btns[g === 'male' ? 0 : 1].setAttribute('aria-checked', 'true');
+      const hipGroup = document.getElementById('hip-group');
+      hipGroup.classList.toggle('show', g === 'female');
+      document.getElementById('hip').required = g === 'female';
+    }
+
+    function calculate(e) {
+      e.preventDefault();
+      const height = parseFloat(document.getElementById('height').value);
+      const waist = parseFloat(document.getElementById('waist').value);
+      const neck = parseFloat(document.getElementById('neck').value);
+
+      if (!height || !waist || !neck) return;
+
+      let bf;
+      if (gender === 'male') {
+        bf = 495 / (1.0324 - 0.19077 * Math.log10(waist - neck) + 0.15456 * Math.log10(height)) - 450;
+      } else {
+        const hip = parseFloat(document.getElementById('hip').value);
+        if (!hip) return;
+        bf = 495 / (1.29579 - 0.35004 * Math.log10(waist + hip - neck) + 0.22100 * Math.log10(height)) - 450;
+      }
+
+      bf = Math.max(0, Math.min(bf, 60));
+      const rounded = bf.toFixed(1);
+
+      document.getElementById('bf-value').textContent = rounded + '%';
+
+      const catEl = document.getElementById('bf-category');
+      catEl.className = 'result-category';
+
+      if (gender === 'male') {
+        if (bf < 6) { catEl.textContent = 'Essential Fat'; catEl.classList.add('cat-essential'); }
+        else if (bf < 14) { catEl.textContent = 'Athlete'; catEl.classList.add('cat-athlete'); }
+        else if (bf < 18) { catEl.textContent = 'Fitness'; catEl.classList.add('cat-fitness'); }
+        else if (bf < 25) { catEl.textContent = 'Average'; catEl.classList.add('cat-average'); }
+        else { catEl.textContent = 'Above Average'; catEl.classList.add('cat-obese'); }
+      } else {
+        if (bf < 14) { catEl.textContent = 'Essential Fat'; catEl.classList.add('cat-essential'); }
+        else if (bf < 21) { catEl.textContent = 'Athlete'; catEl.classList.add('cat-athlete'); }
+        else if (bf < 25) { catEl.textContent = 'Fitness'; catEl.classList.add('cat-fitness'); }
+        else if (bf < 32) { catEl.textContent = 'Average'; catEl.classList.add('cat-average'); }
+        else { catEl.textContent = 'Above Average'; catEl.classList.add('cat-obese'); }
+      }
+
+      document.getElementById('result').classList.add('show');
+    }
+  </script>
+</body>
+</html>

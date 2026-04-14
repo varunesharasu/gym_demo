@@ -4,7 +4,11 @@ import { getIcon, featureIcons } from '../data/mockData';
 import CountUp from './CountUp';
 import BorderGlow from './BorderGlow';
 
-const PricingCard = ({ name, price, period, popular, features, notIncluded }) => {
+const PricingCard = ({ name, monthlyPrice, yearlyPrice, popular, features, notIncluded, billingPeriod = 'monthly' }) => {
+  const price = billingPeriod === 'yearly' ? yearlyPrice : monthlyPrice;
+  const period = billingPeriod === 'yearly' ? 'year' : 'month';
+  const monthlySavings = billingPeriod === 'yearly' ? Math.round(monthlyPrice * 12 - yearlyPrice) : 0;
+
   return (
     <BorderGlow
       className={`h-full rounded-3xl ${popular ? 'scale-105' : ''}`}
@@ -47,6 +51,13 @@ const PricingCard = ({ name, price, period, popular, features, notIncluded }) =>
             </span>
             <span className="text-gray-500 ml-2">/{period}</span>
           </div>
+
+          {/* Yearly savings badge */}
+          {billingPeriod === 'yearly' && monthlySavings > 0 && (
+            <div className="mb-4 inline-flex items-center gap-1.5 bg-green-500/10 border border-green-500/20 text-green-400 text-xs font-semibold px-3 py-1.5 rounded-full">
+              💰 Save ${monthlySavings}/year
+            </div>
+          )}
 
           <ul className="space-y-3 mb-8 flex-1">
             {features.map((feature, index) => {

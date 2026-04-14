@@ -44,6 +44,54 @@ const Services = () => {
         </div>
       </section>
 
+      {/* ============ PREMIUM AMENITIES (MOVED ABOVE PACKAGES) ============ */}
+      <section className="section-padding bg-gray-900/30 border-y border-gray-800/50">
+        <div className="max-w-7xl mx-auto">
+          <SectionTitle
+            title="Premium Amenities"
+            subtitle="World-class facilities designed for your comfort and performance"
+          />
+          
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+            {amenities.map((amenity, idx) => {
+              const Icon = getIcon(amenity.icon);
+              return (
+                <BorderGlow
+                  key={amenity.id}
+                  className="h-full rounded-2xl"
+                  edgeSensitivity={30}
+                  glowColor="40 80 80"
+                  backgroundColor="#060010"
+                  borderRadius={22}
+                  glowRadius={26}
+                  glowIntensity={1}
+                  coneSpread={24}
+                  colors={['#7c3aed', '#ec4899', '#0ea5e9']}
+                  fillOpacity={0.38}
+                >
+                  <div
+                    className="glass-card relative overflow-hidden p-6 text-center cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:border-royal-500/50 group"
+                    style={{ animationDelay: `${idx * 50}ms` }}
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute -top-10 -right-10 h-28 w-28 rounded-full bg-royal-500/10 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-royal-400/50 to-transparent opacity-60" />
+
+                    <div className="relative z-10">
+                      <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-royal-500/15 to-royal-700/20 border border-royal-500/15 flex items-center justify-center mx-auto mb-3 group-hover:bg-royal-500/30 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-inner shadow-black/20">
+                        <Icon className="text-royal-400 text-xl group-hover:animate-bounce" />
+                      </div>
+                      <h3 className="text-white font-semibold text-sm mb-1">{amenity.name}</h3>
+                      <p className="text-gray-500 text-xs group-hover:text-gray-400 transition-colors">{amenity.description}</p>
+                    </div>
+                  </div>
+                </BorderGlow>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* ============ PRICING PACKAGES WITH TOGGLE ============ */}
       <section className="section-padding">
         <div className="max-w-7xl mx-auto">
@@ -82,63 +130,15 @@ const Services = () => {
           <div className="grid md:grid-cols-3 gap-8 items-start max-w-5xl mx-auto">
             {packages.map((pkg, idx) => (
               <div key={pkg.id} className={`group animate-[fade-in_0.6s_ease-out_forwards_${idx * 100}ms_backwards]`}>
-                <PricingCard {...pkg} />
+                <PricingCard {...pkg} billingPeriod={billingPeriod} />
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ============ PREMIUM AMENITIES ============ */}
-      <section className="section-padding bg-gray-900/30 border-y border-gray-800/50">
-        <div className="max-w-7xl mx-auto">
-          <SectionTitle
-            title="Premium Amenities"
-            subtitle="World-class facilities designed for your comfort and performance"
-          />
-          
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-            {amenities.map((amenity, idx) => {
-              const Icon = getIcon(amenity.icon);
-              return (
-                <BorderGlow
-                  key={amenity.id}
-                  className="h-full rounded-2xl"
-                  edgeSensitivity={30}
-                  glowColor="40 80 80"
-                  backgroundColor="#060010"
-                  borderRadius={22}
-                  glowRadius={26}
-                  glowIntensity={1}
-                  coneSpread={24}
-                  colors={['#7c3aed', '#ec4899', '#0ea5e9']}
-                  fillOpacity={0.38}
-                >
-                  <div
-                    className="glass-card relative overflow-hidden p-6 text-center cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:border-royal-500/50"
-                    style={{ animationDelay: `${idx * 50}ms` }}
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    <div className="absolute -top-10 -right-10 h-28 w-28 rounded-full bg-royal-500/10 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    <div className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-royal-400/50 to-transparent opacity-60" />
-
-                    <div className="relative z-10 group">
-                      <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-royal-500/15 to-royal-700/20 border border-royal-500/15 flex items-center justify-center mx-auto mb-3 group-hover:bg-royal-500/30 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-inner shadow-black/20">
-                        <Icon className="text-royal-400 text-xl group-hover:animate-bounce" />
-                      </div>
-                      <h3 className="text-white font-semibold text-sm mb-1">{amenity.name}</h3>
-                      <p className="text-gray-500 text-xs group-hover:text-gray-400 transition-colors">{amenity.description}</p>
-                    </div>
-                  </div>
-                </BorderGlow>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
       {/* ============ WHY CHOOSE US ============ */}
-      <section className="section-padding">
+      <section className="section-padding bg-gray-900/30 border-y border-gray-800/50">
         <div className="max-w-7xl mx-auto">
           <SectionTitle
             title="Why Choose JERAI"
@@ -149,7 +149,7 @@ const Services = () => {
             {/* Decorative dividers */}
             <div className="hidden sm:block absolute top-1/2 left-1/2 w-px h-3/4 bg-gradient-to-b from-transparent via-royal-500/30 to-transparent -translate-x-1/2 -translate-y-1/2" />
             
-            {whyChooseUs.map((item, idx) => {
+            {whyChooseUs.map((item) => {
               const Icon = getIcon(item.icon);
               return (
                 <BorderGlow
@@ -165,7 +165,7 @@ const Services = () => {
                   colors={['#7c3aed', '#ec4899', '#0ea5e9']}
                   fillOpacity={0.38}
                 >
-                  <div className="glass-card relative overflow-hidden p-6 md:p-8 flex gap-4 items-start transition-all duration-300 hover:-translate-y-2 hover:border-royal-500/50">
+                  <div className="glass-card relative overflow-hidden p-6 md:p-8 flex gap-4 items-start transition-all duration-300 hover:-translate-y-2 hover:border-royal-500/50 group">
                     <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     <div className="absolute -top-10 -right-10 h-28 w-28 rounded-full bg-royal-500/10 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     <div className="absolute bottom-0 left-0 h-1 w-20 bg-gradient-to-r from-royal-500/50 to-transparent opacity-70" />
@@ -189,7 +189,7 @@ const Services = () => {
       </section>
 
       {/* ============ TRAINER SPOTLIGHT ============ */}
-      <section className="section-padding bg-gray-900/30 border-y border-gray-800/50">
+      <section className="section-padding">
         <div className="max-w-7xl mx-auto">
           <SectionTitle
             title="Trainer Spotlight"
@@ -212,7 +212,7 @@ const Services = () => {
                 fillOpacity={0.38}
               >
                 <div
-                  className={`${'glass-card relative overflow-hidden p-6 text-center cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:border-royal-500/50'} group`}
+                  className="glass-card relative overflow-hidden p-6 text-center cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:border-royal-500/50 group"
                   style={{ animationDelay: `${idx * 100}ms` }}
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -230,9 +230,6 @@ const Services = () => {
                     <div className="space-y-2 text-sm">
                       <p className="text-gray-500">{trainer.speciality}</p>
                       <p className="text-gray-600 text-xs">{trainer.experience} experience</p>
-                      <button className="mt-3 text-royal-400 hover:text-royal-300 text-xs font-semibold transition-colors">
-                        View Profile →
-                      </button>
                     </div>
                   </div>
                 </div>

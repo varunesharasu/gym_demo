@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SectionTitle from '../components/SectionTitle';
 import ScrollReveal from '../components/ScrollReveal';
 import BorderGlow from '../components/BorderGlow';
-import { preferences, getIcon } from '../data/mockData';
-import { FaCheckCircle, FaTimesCircle, FaArrowRight } from 'react-icons/fa';
+import PricingCard from '../components/PricingCard';
+import { preferences, packages, getIcon } from '../data/mockData';
+import { FaCheckCircle, FaArrowRight } from 'react-icons/fa';
 
 const Preferences = () => {
+  const [billingPeriod, setBillingPeriod] = useState('monthly');
+
   return (
     <section id="preferences">
       {/* Hero */}
@@ -66,14 +69,14 @@ const Preferences = () => {
         </div>
       </section>
 
-      {/* Value Propositions */}
+      {/* Value Propositions — Expanded */}
       <section className="section-padding bg-gray-900/30 border-y border-gray-800/50">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <SectionTitle
             title="What You Get"
             subtitle="Benefits that make your membership truly worthwhile"
           />
-          <div className="grid sm:grid-cols-2 gap-4">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {preferences.valueProps.map((prop, index) => (
               <BorderGlow
                 key={index}
@@ -90,7 +93,7 @@ const Preferences = () => {
               >
                 <div className="flex items-center gap-4 glass-card p-5 hover:border-royal-500/30 transition-all duration-300 h-full">
                   <FaCheckCircle className="text-royal-500 text-lg flex-shrink-0" />
-                  <span className="text-gray-300">{prop}</span>
+                  <span className="text-gray-300 text-sm">{prop}</span>
                 </div>
               </BorderGlow>
             ))}
@@ -98,51 +101,47 @@ const Preferences = () => {
         </div>
       </section>
 
-      {/* Comparison Table */}
+      {/* Membership Packages — Monthly & Yearly Toggle */}
       <section className="section-padding">
-        <div className="max-w-3xl mx-auto">
-          <SectionTitle
-            title="How We Compare"
-            subtitle="See the difference between JERAI FITNESS and typical gyms"
-          />
-          <div className="glass-card overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="w-full" role="table">
-                <thead>
-                  <tr className="border-b border-gray-800">
-                    <th className="text-left text-gray-400 font-medium text-sm p-4" scope="col">Feature</th>
-                    <th className="text-center text-royal-400 font-semibold text-sm p-4" scope="col">JERAI FITNESS</th>
-                    <th className="text-center text-gray-500 font-medium text-sm p-4" scope="col">Other Gyms</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {preferences.comparison.map((row, index) => (
-                    <tr
-                      key={index}
-                      className="border-b border-gray-800/50 last:border-0 hover:bg-gray-800/20 transition-colors"
-                    >
-                      <td className="p-4 text-gray-300 text-sm">{row.feature}</td>
-                      <td className="p-4 text-center">
-                        {row.us === true ? (
-                          <FaCheckCircle className="text-royal-500 mx-auto text-lg" aria-label="Yes" />
-                        ) : (
-                          <span className="text-gray-400 text-sm">{String(row.us)}</span>
-                        )}
-                      </td>
-                      <td className="p-4 text-center">
-                        {row.others === true ? (
-                          <FaCheckCircle className="text-green-500 mx-auto text-lg" aria-label="Yes" />
-                        ) : row.others === false ? (
-                          <FaTimesCircle className="text-red-500/60 mx-auto text-lg" aria-label="No" />
-                        ) : (
-                          <span className="text-gray-500 text-sm">{row.others}</span>
-                        )}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col items-center gap-6 mb-12">
+            <SectionTitle
+              title="Membership Plans"
+              subtitle="Flexible pricing for every budget — switch between monthly and yearly"
+            />
+
+            {/* Billing Toggle */}
+            <div className="flex items-center gap-4 bg-gray-900/50 border border-gray-800/50 rounded-full p-2 backdrop-blur">
+              <button
+                onClick={() => setBillingPeriod('monthly')}
+                className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 ${
+                  billingPeriod === 'monthly'
+                    ? 'bg-gradient-to-r from-royal-500 to-royal-600 text-white shadow-lg shadow-royal-500/30'
+                    : 'text-gray-400 hover:text-white'
+                }`}
+              >
+                Monthly
+              </button>
+              <button
+                onClick={() => setBillingPeriod('yearly')}
+                className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 ${
+                  billingPeriod === 'yearly'
+                    ? 'bg-gradient-to-r from-royal-500 to-royal-600 text-white shadow-lg shadow-royal-500/30'
+                    : 'text-gray-400 hover:text-white'
+                }`}
+              >
+                Yearly<span className="ml-2 text-xs bg-green-500/30 text-green-300 px-2 py-1 rounded-full">Save 20%</span>
+              </button>
             </div>
+          </div>
+
+          {/* Pricing Cards */}
+          <div className="grid md:grid-cols-3 gap-8 items-start max-w-5xl mx-auto">
+            {packages.map((pkg) => (
+              <div key={pkg.id} className="group">
+                <PricingCard {...pkg} billingPeriod={billingPeriod} />
+              </div>
+            ))}
           </div>
         </div>
       </section>

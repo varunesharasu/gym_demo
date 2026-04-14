@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Protein Intake Calculator — JERAI FITNESS</title>
+  <meta name="description" content="Calculate your daily protein requirements based on your weight, goals, and activity level for optimal muscle growth and recovery." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #030712;
+      color: #f3f4f6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1rem;
+    }
+    .container { max-width: 480px; width: 100%; }
+    .brand { text-align: center; margin-bottom: 2rem; }
+    .brand h2 { font-size: 1.1rem; font-weight: 800; letter-spacing: -0.02em; }
+    .brand h2 span { color: #2563eb; }
+    .card {
+      background: rgba(17, 24, 39, 0.6);
+      border: 1px solid rgba(55, 65, 81, 0.5);
+      border-radius: 1.25rem;
+      padding: 2rem;
+      backdrop-filter: blur(12px);
+    }
+    h1 { font-size: 1.75rem; font-weight: 800; margin-bottom: 0.5rem; text-align: center; }
+    h1 span {
+      background: linear-gradient(135deg, #2563eb, #1a4fd4);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .subtitle { color: #9ca3af; text-align: center; font-size: 0.875rem; margin-bottom: 1.5rem; }
+    .form-group { margin-bottom: 1.25rem; }
+    label { display: block; color: #9ca3af; font-size: 0.875rem; font-weight: 500; margin-bottom: 0.5rem; }
+    input, select {
+      width: 100%; background: rgba(31, 41, 55, 0.5); border: 1px solid rgba(55, 65, 81, 0.5);
+      border-radius: 0.75rem; padding: 0.75rem 1rem; color: #f3f4f6;
+      font-size: 1rem; font-family: inherit; transition: border-color 0.2s; outline: none;
+      -webkit-appearance: none;
+    }
+    input:focus, select:focus { border-color: rgba(37, 99, 235, 0.5); box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15); }
+    select option { background: #1f2937; color: #f3f4f6; }
+    .btn {
+      width: 100%; padding: 0.875rem; border: none; border-radius: 0.75rem;
+      font-family: inherit; font-size: 1rem; font-weight: 700; cursor: pointer;
+      background: linear-gradient(135deg, #2563eb, #1a4fd4); color: white;
+      transition: all 0.2s; box-shadow: 0 4px 16px rgba(37, 99, 235, 0.25); margin-top: 0.5rem;
+    }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4); }
+    .btn:active { transform: scale(0.98); }
+    .result {
+      margin-top: 1.5rem; padding: 1.5rem; background: rgba(31, 41, 55, 0.4);
+      border-radius: 1rem; text-align: center; display: none;
+    }
+    .result.show { display: block; animation: fadeIn 0.3s ease; }
+    .result-value {
+      font-size: 3rem; font-weight: 800;
+      background: linear-gradient(135deg, #2563eb, #1a4fd4);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .result-label { color: #9ca3af; font-size: 0.875rem; margin-top: 0.25rem; }
+    .result-breakdown {
+      margin-top: 1.25rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0.75rem;
+    }
+    .meal-card {
+      background: rgba(31, 41, 55, 0.5);
+      border: 1px solid rgba(55, 65, 81, 0.3);
+      border-radius: 0.75rem;
+      padding: 0.75rem;
+      text-align: center;
+    }
+    .meal-card .meal-name {
+      font-size: 0.7rem;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.25rem;
+    }
+    .meal-card .meal-value {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #60a5fa;
+    }
+    .meal-card .meal-unit {
+      font-size: 0.7rem;
+      color: #6b7280;
+    }
+    .result-tip {
+      margin-top: 1rem;
+      padding: 0.75rem;
+      background: rgba(37, 99, 235, 0.08);
+      border: 1px solid rgba(37, 99, 235, 0.15);
+      border-radius: 0.75rem;
+      font-size: 0.8rem;
+      color: #93c5fd;
+      text-align: left;
+    }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    @media (max-width: 480px) { body { padding: 1rem 0.75rem; } .card { padding: 1.5rem; } h1 { font-size: 1.45rem; } .result-value { font-size: 2.5rem; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="brand"><h2>JERAI <span>FITNESS</span></h2></div>
+    <div class="card">
+      <h1>Protein Intake <span>Calculator</span></h1>
+      <p class="subtitle">Calculate your optimal daily protein for your fitness goals</p>
+
+      <form onsubmit="calculate(event)">
+        <div class="form-group">
+          <label for="weight">Weight (kg)</label>
+          <input type="number" id="weight" placeholder="75" step="0.1" min="1" required />
+        </div>
+
+        <div class="form-group">
+          <label for="goal">Fitness Goal</label>
+          <select id="goal" required>
+            <option value="">Select your goal</option>
+            <option value="lose">Lose Weight / Cut</option>
+            <option value="maintain">Maintain Weight</option>
+            <option value="gain">Build Muscle / Bulk</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="activity">Activity Level</label>
+          <select id="activity" required>
+            <option value="">Select activity level</option>
+            <option value="sedentary">Sedentary (little or no exercise)</option>
+            <option value="light">Lightly Active (1-3 days/week)</option>
+            <option value="moderate">Moderately Active (3-5 days/week)</option>
+            <option value="active">Very Active (6-7 days/week)</option>
+            <option value="extreme">Extra Active (athlete / 2x daily)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="meals">Meals Per Day</label>
+          <select id="meals">
+            <option value="3">3 meals</option>
+            <option value="4">4 meals</option>
+            <option value="5">5 meals</option>
+            <option value="6">6 meals</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn">Calculate Protein</button>
+      </form>
+
+      <div id="result" class="result" role="status" aria-live="polite">
+        <div class="result-value" id="protein-value">—</div>
+        <div class="result-label">Grams of protein per day</div>
+
+        <div class="result-breakdown" id="meal-breakdown"></div>
+
+        <div class="result-tip" id="tip"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Protein multipliers (grams per kg body weight)
+    const proteinRanges = {
+      lose:     { sedentary: 1.2, light: 1.4, moderate: 1.6, active: 1.8, extreme: 2.0 },
+      maintain: { sedentary: 0.8, light: 1.0, moderate: 1.2, active: 1.4, extreme: 1.6 },
+      gain:     { sedentary: 1.4, light: 1.6, moderate: 1.8, active: 2.0, extreme: 2.2 },
+    };
+
+    const tips = {
+      lose: "💡 During a cut, higher protein helps preserve muscle mass. Spread intake evenly across meals and prioritize lean sources like chicken, fish, and Greek yogurt.",
+      maintain: "💡 For maintenance, focus on consistent protein intake with each meal. Good sources include eggs, legumes, lean meats, and dairy products.",
+      gain: "💡 For muscle building, aim to consume protein within 30 minutes post-workout. Combine with complex carbs for optimal recovery and growth.",
+    };
+
+    const mealNames = ['Breakfast', 'Lunch', 'Snack', 'Dinner', 'Pre-Workout', 'Post-Workout'];
+
+    function calculate(e) {
+      e.preventDefault();
+      const weight = parseFloat(document.getElementById('weight').value);
+      const goal = document.getElementById('goal').value;
+      const activity = document.getElementById('activity').value;
+      const meals = parseInt(document.getElementById('meals').value);
+
+      if (!weight || !goal || !activity) return;
+
+      const multiplier = proteinRanges[goal][activity];
+      const totalProtein = Math.round(weight * multiplier);
+      const perMeal = Math.round(totalProtein / meals);
+
+      document.getElementById('protein-value').textContent = totalProtein + 'g';
+
+      // Build meal breakdown
+      const breakdownEl = document.getElementById('meal-breakdown');
+      breakdownEl.innerHTML = '';
+      for (let i = 0; i < Math.min(meals, 6); i++) {
+        const isLast = i === meals - 1;
+        const mealProtein = isLast ? totalProtein - perMeal * (meals - 1) : perMeal;
+        breakdownEl.innerHTML += `
+          <div class="meal-card">
+            <div class="meal-name">${mealNames[i] || 'Meal ' + (i+1)}</div>
+            <div class="meal-value">${mealProtein}<span class="meal-unit">g</span></div>
+          </div>
+        `;
+      }
+
+      document.getElementById('tip').textContent = tips[goal];
+      document.getElementById('result').classList.add('show');
+    }
+  </script>
+</body>
+</html>

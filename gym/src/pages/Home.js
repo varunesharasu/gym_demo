@@ -1,18 +1,10 @@
 import React from 'react';
-import { FaDumbbell, FaArrowRight } from 'react-icons/fa';
-import HeroCarousel from '../components/HeroCarousel';
-import StatCounter from '../components/StatCounter';
-import SectionTitle from '../components/SectionTitle';
-import TestimonialCard from '../components/TestimonialCard';
-import ScrollReveal from '../components/ScrollReveal';
-import { stats, testimonials, whyChooseUs, getIcon } from '../data/mockData';
+import { FaDumbbell, FaArrowRight, FaUsers, FaTrophy, FaClock } from 'react-icons/fa';
 
 const Home = () => {
-  const featuredReview = testimonials[0];
-
   return (
     <section id="home">
-      {/* Hero Section */}
+      {/* Hero Section — Premium Ad-Style */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background Image */}
         <div
@@ -20,46 +12,82 @@ const Home = () => {
           style={{ backgroundImage: 'url(/hero.png)' }}
           aria-hidden="true"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-gray-950/70 via-gray-950/60 to-gray-950" aria-hidden="true" />
+        {/* Multi-layer gradient overlay for depth */}
+        <div className="absolute inset-0 bg-gradient-to-b from-gray-950/80 via-gray-950/50 to-gray-950" aria-hidden="true" />
+        <div className="absolute inset-0 bg-gradient-to-r from-gray-950/60 via-transparent to-gray-950/40" aria-hidden="true" />
+
+        {/* Animated accent glow */}
+        <div
+          className="absolute top-1/4 left-1/4 w-96 h-96 bg-royal-500/20 rounded-full blur-3xl animate-pulse"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-royal-700/15 rounded-full blur-3xl animate-pulse"
+          style={{ animationDelay: '1s' }}
+          aria-hidden="true"
+        />
 
         {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16 w-full">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left: Text */}
-            <div className="animate-fade-in">
-              <div className="inline-flex items-center gap-2 bg-royal-500/10 border border-royal-500/20 text-royal-400 text-sm font-medium px-4 py-2 rounded-full mb-6">
-                <FaDumbbell className="text-xs" />
-                <span>#1 Premium Fitness Center</span>
-              </div>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight mb-6">
-                Unleash Your
-                <span className="block gradient-text">Inner Strength</span>
-              </h1>
-              <ScrollReveal
-                containerClassName="max-w-lg mb-8"
-                textClassName="text-gray-400 text-lg md:text-xl leading-relaxed"
-                baseOpacity={0.14}
-                baseRotation={2}
-                blurStrength={3}
-              >
-                Transform your body. Elevate your mind. Join the most premium
-                fitness experience in the city with world-class trainers and
-                state-of-the-art equipment.
-              </ScrollReveal>
-              <div className="flex flex-wrap gap-4">
-                <a href="#contact" onClick={(e) => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); }} className="btn-primary inline-flex items-center gap-2">
-                  Book Free Trial
-                  <FaArrowRight className="text-sm" />
-                </a>
-                <a href="#services" onClick={(e) => { e.preventDefault(); document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' }); }} className="btn-outline inline-flex items-center gap-2">
-                  View Plans
-                </a>
-              </div>
+        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16 w-full text-center">
+          <div className="animate-fade-in">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 bg-royal-500/10 border border-royal-500/20 text-royal-400 text-sm font-medium px-5 py-2.5 rounded-full mb-8 backdrop-blur-sm">
+              <FaDumbbell className="text-xs" />
+              <span>#1 Premium Fitness Center in the City</span>
             </div>
 
-            {/* Right: Carousel */}
-            <div className="animate-slide-up" style={{ animationDelay: '0.2s' }}>
-              <HeroCarousel />
+            {/* Main Headline */}
+            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold text-white leading-[0.95] mb-6 tracking-tight">
+              Transform Your
+              <span className="block gradient-text mt-2">Body & Mind</span>
+            </h1>
+
+            {/* Subtitle */}
+            <p className="text-gray-400 text-lg md:text-xl lg:text-2xl max-w-2xl mx-auto leading-relaxed mb-10">
+              Where world-class equipment meets expert coaching.
+              <span className="text-gray-300 font-medium"> Your journey to peak fitness starts here.</span>
+            </p>
+
+            {/* CTA */}
+            <div className="flex flex-wrap justify-center gap-4 mb-16">
+              <a
+                href="#contact"
+                onClick={(e) => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); }}
+                className="btn-primary inline-flex items-center gap-2 text-lg !px-10 !py-4"
+              >
+                Start Your Journey
+                <FaArrowRight className="text-sm" />
+              </a>
+              <a
+                href="#about"
+                onClick={(e) => { e.preventDefault(); document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' }); }}
+                className="btn-outline inline-flex items-center gap-2 text-lg !px-10 !py-4"
+              >
+                Discover More
+              </a>
+            </div>
+
+            {/* Floating Stats Row */}
+            <div className="flex flex-wrap justify-center gap-4 md:gap-6">
+              {[
+                { icon: FaUsers, value: '5,000+', label: 'Active Members' },
+                { icon: FaTrophy, value: '10+', label: 'Years of Excellence' },
+                { icon: FaClock, value: '24/7', label: 'Always Open' },
+              ].map((stat, index) => (
+                <div
+                  key={stat.label}
+                  className="flex items-center gap-3 bg-gray-900/40 backdrop-blur-md border border-gray-700/30 rounded-2xl px-5 py-3 hover:border-royal-500/40 transition-all duration-300"
+                  style={{ animationDelay: `${index * 0.15}s` }}
+                >
+                  <div className="w-10 h-10 rounded-xl bg-royal-500/15 flex items-center justify-center flex-shrink-0">
+                    <stat.icon className="text-royal-400 text-lg" />
+                  </div>
+                  <div className="text-left">
+                    <div className="text-white font-bold text-lg leading-tight">{stat.value}</div>
+                    <div className="text-gray-500 text-xs">{stat.label}</div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -68,94 +96,6 @@ const Home = () => {
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce" aria-hidden="true">
           <div className="w-6 h-10 border-2 border-gray-600 rounded-full flex justify-center">
             <div className="w-1.5 h-3 bg-royal-500 rounded-full mt-2 animate-pulse" />
-          </div>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="relative py-16 md:py-20 border-y border-gray-800/50 bg-gray-900/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat) => (
-              <StatCounter
-                key={stat.id}
-                value={stat.value}
-                suffix={stat.suffix}
-                label={stat.label}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Why Choose Us Preview */}
-      <section className="section-padding">
-        <div className="max-w-7xl mx-auto">
-          <SectionTitle
-            title="Why Choose Us"
-            subtitle="Experience the difference that sets us apart from every other gym"
-          />
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {whyChooseUs.map((item, index) => {
-              const Icon = getIcon(item.icon);
-              return (
-                <div
-                  key={item.id}
-                  className="glass-card p-6 text-center group hover:border-royal-500/50 hover:-translate-y-1 transition-all duration-300"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  <div className="w-14 h-14 rounded-xl bg-royal-500/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-royal-500/20 transition-colors">
-                    <Icon className="text-royal-400 text-2xl" />
-                  </div>
-                  <h3 className="text-white font-semibold mb-2">{item.title}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed">{item.description}</p>
-                </div>
-              );
-            })}
-          </div>
-          <div className="text-center mt-10">
-            <a href="#services" onClick={(e) => { e.preventDefault(); document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' }); }} className="btn-outline inline-flex items-center gap-2">
-              Explore All Services <FaArrowRight />
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Testimonial */}
-      <section className="section-padding bg-gray-900/30 border-y border-gray-800/50">
-        <div className="max-w-3xl mx-auto">
-          <SectionTitle
-            title="What Members Say"
-            subtitle="Hear from our thriving community of fitness enthusiasts"
-          />
-          <TestimonialCard {...featuredReview} />
-          <div className="text-center mt-8">
-            <a href="#reviews" onClick={(e) => { e.preventDefault(); document.getElementById('reviews')?.scrollIntoView({ behavior: 'smooth' }); }} className="text-royal-400 hover:text-royal-300 font-medium inline-flex items-center gap-2 transition-colors">
-              Read All Reviews <FaArrowRight />
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Banner */}
-      <section className="relative overflow-hidden py-20 md:py-28">
-        <div className="absolute inset-0 bg-gradient-to-r from-royal-900 via-royal-800 to-royal-950 opacity-80" aria-hidden="true" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-royal-500/20 via-transparent to-transparent" aria-hidden="true" />
-        <div className="relative z-10 max-w-4xl mx-auto text-center px-4">
-          <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-4">
-            Ready to Start Your Transformation?
-          </h2>
-          <p className="text-royal-200/80 text-lg md:text-xl mb-8 max-w-2xl mx-auto">
-            Join thousands of members who have already transformed their lives.
-            Your first session is on us.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <a href="#contact" onClick={(e) => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); }} className="bg-white text-gray-900 font-semibold px-8 py-3 rounded-xl hover:bg-gray-100 transition-all duration-300 active:scale-95 shadow-lg">
-              Get Started Today
-            </a>
-            <a href="#about" onClick={(e) => { e.preventDefault(); document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' }); }} className="border-2 border-white/30 text-white font-semibold px-8 py-3 rounded-xl hover:bg-white/10 transition-all duration-300 active:scale-95">
-              Learn More
-            </a>
           </div>
         </div>
       </section>

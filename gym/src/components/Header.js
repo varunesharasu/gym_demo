@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { FaBars, FaTimes, FaDumbbell } from 'react-icons/fa';
+import React, { useState, useEffect, useRef } from 'react';
+import { FaBars, FaTimes, FaDumbbell, FaChevronDown, FaCalculator } from 'react-icons/fa';
+import { fitnessCalculators } from '../data/mockData';
 
 const navLinks = [
   { href: '#home', label: 'Home' },
@@ -14,6 +15,10 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('#home');
+  const [resourcesOpen, setResourcesOpen] = useState(false);
+  const [mobileResourcesOpen, setMobileResourcesOpen] = useState(false);
+  const resourcesRef = useRef(null);
+  const resourcesTimeout = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,6 +41,17 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close resources dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (resourcesRef.current && !resourcesRef.current.contains(e.target)) {
+        setResourcesOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   const handleNavClick = (href) => {
     setIsOpen(false);
     const el = document.getElementById(href.substring(1));
@@ -44,12 +60,30 @@ const Header = () => {
     }
   };
 
+  const handleResourcesEnter = () => {
+    clearTimeout(resourcesTimeout.current);
+    setResourcesOpen(true);
+  };
+
+  const handleResourcesLeave = () => {
+    resourcesTimeout.current = setTimeout(() => setResourcesOpen(false), 200);
+  };
+
+  const handleResourcesKeyDown = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      setResourcesOpen(!resourcesOpen);
+    } else if (e.key === 'Escape') {
+      setResourcesOpen(false);
+    }
+  };
+
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
         scrolled
-          ? 'bg-gray-950/95 backdrop-blur-md shadow-lg shadow-black/20 border-b border-gray-800/50'
-          : 'bg-transparent'
+          ? 'bg-gray-950/95 backdrop-blur-md shadow-lg shadow-black/20 border-gray-800/50'
+          : 'bg-gray-950/0 border-transparent'
       }`}
       role="banner"
     >
@@ -89,20 +123,68 @@ const Header = () => {
               </a>
             </li>
           ))}
-          <li className="ml-4">
-            <a
-              href="#contact"
-              onClick={(e) => { e.preventDefault(); handleNavClick('#contact'); }}
-              className="btn-primary text-sm !px-6 !py-2.5"
+
+          {/* Resources Dropdown */}
+          <li
+            className="relative"
+            ref={resourcesRef}
+            onMouseEnter={handleResourcesEnter}
+            onMouseLeave={handleResourcesLeave}
+          >
+            <button
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 inline-flex items-center gap-1.5 ${
+                resourcesOpen
+                  ? 'text-royal-400 bg-royal-500/10'
+                  : 'text-gray-400 hover:text-white hover:bg-white/5'
+              }`}
+              onClick={() => setResourcesOpen(!resourcesOpen)}
+              onKeyDown={handleResourcesKeyDown}
+              aria-haspopup="true"
+              aria-expanded={resourcesOpen}
+              id="resources-menu-button"
             >
-              Join Now
-            </a>
+              Resources
+              <FaChevronDown className={`text-xs transition-transform duration-200 ${resourcesOpen ? 'rotate-180' : ''}`} />
+            </button>
+
+            {/* Dropdown Panel */}
+            <div
+              className={`absolute top-full right-0 mt-2 w-64 transition-all duration-200 origin-top-right ${
+                resourcesOpen
+                  ? 'opacity-100 scale-100 translate-y-0 pointer-events-auto'
+                  : 'opacity-0 scale-95 -translate-y-2 pointer-events-none'
+              }`}
+              role="menu"
+              aria-labelledby="resources-menu-button"
+            >
+              <div className="bg-gray-900/98 backdrop-blur-xl border border-gray-800/60 rounded-2xl shadow-2xl shadow-black/40 overflow-hidden p-2">
+                <div className="px-3 py-2 border-b border-gray-800/50 mb-1">
+                  <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Fitness Calculators</p>
+                </div>
+                {fitnessCalculators.map((calc) => (
+                  <a
+                    key={calc.name}
+                    href={calc.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-gray-300 hover:text-white hover:bg-royal-500/10 transition-all duration-150 group"
+                    role="menuitem"
+                    tabIndex={resourcesOpen ? 0 : -1}
+                  >
+                    <div className="w-8 h-8 rounded-lg bg-royal-500/10 flex items-center justify-center flex-shrink-0 group-hover:bg-royal-500/20 transition-colors">
+                      <FaCalculator className="text-royal-400 text-xs" />
+                    </div>
+                    <span>{calc.name}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
           </li>
         </ul>
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-gray-400 hover:text-white p-2"
+          className="md:hidden text-gray-400 hover:text-white p-2 min-w-[44px] min-h-[44px] flex items-center justify-center"
           onClick={() => setIsOpen(!isOpen)}
           aria-expanded={isOpen}
           aria-controls="mobile-menu"
@@ -116,7 +198,7 @@ const Header = () => {
       <div
         id="mobile-menu"
         className={`md:hidden overflow-hidden transition-all duration-300 ${
-          isOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
+          isOpen ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
         <div className="bg-gray-950/98 backdrop-blur-md border-t border-gray-800/50 px-4 py-4 space-y-1 animate-slide-down">
@@ -125,7 +207,7 @@ const Header = () => {
               key={link.href}
               href={link.href}
               onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
-              className={`block px-4 py-3 rounded-xl text-base font-medium transition-all duration-200 ${
+              className={`block px-4 py-3 rounded-xl text-base font-medium transition-all duration-200 min-h-[44px] flex items-center ${
                 activeSection === link.href
                   ? 'text-royal-400 bg-royal-500/10'
                   : 'text-gray-400 hover:text-white hover:bg-white/5'
@@ -134,13 +216,35 @@ const Header = () => {
               {link.label}
             </a>
           ))}
-          <a
-            href="#contact"
-            onClick={(e) => { e.preventDefault(); handleNavClick('#contact'); }}
-            className="block text-center btn-primary mt-4 !py-3"
-          >
-            Join Now
-          </a>
+
+          {/* Mobile Resources Accordion */}
+          <div className="border-t border-gray-800/30 pt-2 mt-2">
+            <button
+              className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-base font-medium text-gray-400 hover:text-white hover:bg-white/5 transition-all duration-200 min-h-[44px]"
+              onClick={() => setMobileResourcesOpen(!mobileResourcesOpen)}
+              aria-expanded={mobileResourcesOpen}
+            >
+              <span>Resources</span>
+              <FaChevronDown className={`text-xs transition-transform duration-200 ${mobileResourcesOpen ? 'rotate-180' : ''}`} />
+            </button>
+            <div className={`overflow-hidden transition-all duration-300 ${mobileResourcesOpen ? 'max-h-[300px] opacity-100' : 'max-h-0 opacity-0'}`}>
+              <div className="pl-4 space-y-1 pb-2">
+                <p className="px-4 py-2 text-xs font-semibold text-gray-600 uppercase tracking-wider">Fitness Calculators</p>
+                {fitnessCalculators.map((calc) => (
+                  <a
+                    key={calc.name}
+                    href={calc.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm text-gray-400 hover:text-white hover:bg-royal-500/10 transition-all duration-150"
+                  >
+                    <FaCalculator className="text-royal-400 text-xs" />
+                    <span>{calc.name}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </header>

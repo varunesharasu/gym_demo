@@ -1,0 +1,83 @@
+.pricing-head {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+.pricing-title {
+  font-size: 2.5rem;
+  margin-top: 0.5rem;
+}
+
+.pricing-toggle {
+  display: inline-flex;
+  margin-top: 1.5rem;
+  background: var(--white-05);
+  border-radius: 9999px;
+  padding: 0.25rem;
+  border: 1px solid var(--border);
+}
+.toggle-btn {
+  padding: 0.5rem 1.5rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  transition: background 0.3s;
+}
+.toggle-btn.active { background: var(--brand); }
+.toggle-badge { font-size: 0.75rem; opacity: 0.7; }
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.price-card {
+  border-radius: 1rem;
+  padding: 2rem;
+  border: 1px solid var(--border);
+  background: var(--white-05);
+}
+.price-card.featured {
+  background: rgba(225,29,72,0.1);
+  border-color: var(--brand);
+}
+.price-badge {
+  font-size: 0.75rem;
+  background: var(--brand);
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+}
+.price-name {
+  font-size: 1.875rem;
+  margin-top: 1rem;
+}
+.price-amount { margin-top: 1rem; }
+.price-num {
+  font-size: 3rem;
+  font-family: var(--font-display);
+}
+.price-per { color: var(--white-60); }
+
+.price-perks {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.price-perks li {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  font-size: 0.875rem;
+}
+.perk-icon { color: var(--brand); flex-shrink: 0; }
+
+.price-cta {
+  margin-top: 2rem;
+  width: 100%;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .pricing-grid { grid-template-columns: repeat(3, 1fr); }
+  .pricing-title { font-size: 3.75rem; }
+}

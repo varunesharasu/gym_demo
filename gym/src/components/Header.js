@@ -82,8 +82,8 @@ const Header = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
         scrolled
-          ? 'bg-gray-950/95 backdrop-blur-md shadow-lg shadow-black/20 border-gray-800/50'
-          : 'bg-gray-950/0 border-transparent'
+          ? 'bg-slate-900/95 backdrop-blur-md shadow-lg shadow-accent-600/20 border-primary-500/20'
+          : 'bg-slate-900/50 border-primary-500/10'
       }`}
       role="banner"
     >
@@ -97,12 +97,14 @@ const Header = () => {
           href="#home"
           onClick={(e) => { e.preventDefault(); handleNavClick('#home'); }}
           className="flex items-center gap-2 group"
-          aria-label="JERAI FITNESS home"
+          aria-label="FITPULSE home"
         >
-          <FaDumbbell className="text-royal-500 text-2xl group-hover:rotate-12 transition-transform duration-300" />
-          <span className="text-xl md:text-2xl font-extrabold tracking-tight">
-            <span className="text-white">JERAI</span>
-            <span className="gradient-text ml-1">FITNESS</span>
+          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-600 to-accent-600 flex items-center justify-center group-hover:shadow-lg group-hover:shadow-accent-500/50 transition-all duration-300">
+            <FaDumbbell className="text-white text-lg" />
+          </div>
+          <span className="text-xl md:text-2xl font-bold tracking-tight">
+            <span className="text-white">FIT</span>
+            <span className="bg-gradient-to-r from-primary-400 to-accent-500 bg-clip-text text-transparent">PULSE</span>
           </span>
         </a>
 
@@ -115,8 +117,8 @@ const Header = () => {
                 onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                   activeSection === link.href
-                    ? 'text-royal-400 bg-royal-500/10'
-                    : 'text-gray-400 hover:text-white hover:bg-white/5'
+                    ? 'text-primary-300 bg-primary-500/10 border border-primary-500/30'
+                    : 'text-gray-300 hover:text-white hover:bg-accent-500/5 hover:border-accent-500/30 border border-transparent'
                 }`}
               >
                 {link.label}
@@ -132,10 +134,10 @@ const Header = () => {
             onMouseLeave={handleResourcesLeave}
           >
             <button
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 inline-flex items-center gap-1.5 ${
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 inline-flex items-center gap-1.5 border ${
                 resourcesOpen
-                  ? 'text-royal-400 bg-royal-500/10'
-                  : 'text-gray-400 hover:text-white hover:bg-white/5'
+                  ? 'text-primary-300 bg-primary-500/10 border-primary-500/30'
+                  : 'text-gray-300 hover:text-white hover:bg-accent-500/5 hover:border-accent-500/30 border-transparent'
               }`}
               onClick={() => setResourcesOpen(!resourcesOpen)}
               onKeyDown={handleResourcesKeyDown}
@@ -157,9 +159,9 @@ const Header = () => {
               role="menu"
               aria-labelledby="resources-menu-button"
             >
-              <div className="bg-gray-900/98 backdrop-blur-xl border border-gray-800/60 rounded-2xl shadow-2xl shadow-black/40 overflow-hidden p-2">
-                <div className="px-3 py-2 border-b border-gray-800/50 mb-1">
-                  <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Fitness Calculators</p>
+              <div className="bg-slate-900/98 backdrop-blur-xl border border-primary-500/30 rounded-2xl shadow-2xl shadow-accent-600/20 overflow-hidden p-2">
+                <div className="px-3 py-2 border-b border-primary-500/20 mb-1">
+                  <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Fitness Calculators</p>
                 </div>
                 {fitnessCalculators.map((calc) => (
                   <a
@@ -167,12 +169,12 @@ const Header = () => {
                     href={calc.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-gray-300 hover:text-white hover:bg-royal-500/10 transition-all duration-150 group"
+                    className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-gray-300 hover:text-white hover:bg-primary-500/10 transition-all duration-150 group"
                     role="menuitem"
                     tabIndex={resourcesOpen ? 0 : -1}
                   >
-                    <div className="w-8 h-8 rounded-lg bg-royal-500/10 flex items-center justify-center flex-shrink-0 group-hover:bg-royal-500/20 transition-colors">
-                      <FaCalculator className="text-royal-400 text-xs" />
+                    <div className="w-8 h-8 rounded-lg bg-primary-500/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary-500/20 transition-colors">
+                      <FaCalculator className="text-primary-400 text-xs" />
                     </div>
                     <span>{calc.name}</span>
                   </a>
@@ -201,16 +203,16 @@ const Header = () => {
           isOpen ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
-        <div className="bg-gray-950/98 backdrop-blur-md border-t border-gray-800/50 px-4 py-4 space-y-1 animate-slide-down">
+        <div className="bg-slate-900/98 backdrop-blur-md border-t border-primary-500/20 px-4 py-4 space-y-1 animate-slide-down">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
               onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
-              className={`block px-4 py-3 rounded-xl text-base font-medium transition-all duration-200 min-h-[44px] flex items-center ${
+              className={`block px-4 py-3 rounded-xl text-base font-medium transition-all duration-200 min-h-[44px] flex items-center border ${
                 activeSection === link.href
-                  ? 'text-royal-400 bg-royal-500/10'
-                  : 'text-gray-400 hover:text-white hover:bg-white/5'
+                  ? 'text-primary-300 bg-primary-500/10 border-primary-500/30'
+                  : 'text-gray-300 hover:text-white hover:bg-accent-500/5 hover:border-accent-500/30 border-transparent'
               }`}
             >
               {link.label}
@@ -218,9 +220,9 @@ const Header = () => {
           ))}
 
           {/* Mobile Resources Accordion */}
-          <div className="border-t border-gray-800/30 pt-2 mt-2">
+          <div className="border-t border-primary-500/20 pt-2 mt-2">
             <button
-              className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-base font-medium text-gray-400 hover:text-white hover:bg-white/5 transition-all duration-200 min-h-[44px]"
+              className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-base font-medium text-gray-300 hover:text-white hover:bg-accent-500/5 transition-all duration-200 min-h-[44px] border border-transparent"
               onClick={() => setMobileResourcesOpen(!mobileResourcesOpen)}
               aria-expanded={mobileResourcesOpen}
             >
@@ -229,16 +231,16 @@ const Header = () => {
             </button>
             <div className={`overflow-hidden transition-all duration-300 ${mobileResourcesOpen ? 'max-h-[300px] opacity-100' : 'max-h-0 opacity-0'}`}>
               <div className="pl-4 space-y-1 pb-2">
-                <p className="px-4 py-2 text-xs font-semibold text-gray-600 uppercase tracking-wider">Fitness Calculators</p>
+                <p className="px-4 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider">Fitness Calculators</p>
                 {fitnessCalculators.map((calc) => (
                   <a
                     key={calc.name}
                     href={calc.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm text-gray-400 hover:text-white hover:bg-royal-500/10 transition-all duration-150"
+                    className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm text-gray-300 hover:text-white hover:bg-primary-500/10 transition-all duration-150"
                   >
-                    <FaCalculator className="text-royal-400 text-xs" />
+                    <FaCalculator className="text-primary-400 text-xs" />
                     <span>{calc.name}</span>
                   </a>
                 ))}

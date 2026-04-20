@@ -2,51 +2,75 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --color-bg-primary: #0f172a;
+  --color-bg-secondary: #1a2f4f;
+  --color-primary: #7c3aed;
+  --color-accent: #e91e63;
+  --color-energy: #06b6d4;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #e5e7eb;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: linear-gradient(135deg, #0f172a 0%, #1a2f4f 100%);
+  color: var(--color-text-primary);
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0a0a0a;
+  background: rgba(30, 41, 59, 0.8);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #2563eb;
-  border-radius: 4px;
+  background: linear-gradient(180deg, #7c3aed 0%, #e91e63 100%);
+  border-radius: 5px;
+  border: 2px solid rgba(15, 23, 42, 0.5);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #1a4fd4;
-}
-
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
+  background: linear-gradient(180deg, #a855f7 0%, #ff1493 100%);
 }
 
 /* Custom utility classes */
 @layer components {
   .glass-card {
-    @apply bg-gray-900/60 backdrop-blur-md border border-gray-800/50 rounded-2xl;
+    @apply bg-slate-900/40 backdrop-blur-md border border-purple-500/20 rounded-2xl;
   }
 
   .glass-card-hover {
-    @apply glass-card hover:bg-gray-900/80 hover:border-royal-500/50 transition-all duration-300;
+    @apply glass-card hover:bg-slate-900/60 hover:border-accent-500/50 transition-all duration-300;
   }
 
   .glass-card-glow {
-    @apply glass-card shadow-lg shadow-royal-500/20 border-royal-500/50;
+    @apply glass-card shadow-lg shadow-accent-500/30 border-accent-500/50;
   }
 
   .gradient-text {
-    @apply bg-gradient-to-r from-royal-400 to-royal-600 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-primary-400 via-accent-500 to-energy-400 bg-clip-text text-transparent;
   }
 
   .btn-primary {
-    @apply bg-gradient-to-r from-royal-500 to-royal-700 text-white font-semibold px-8 py-3 rounded-xl
-           hover:from-royal-400 hover:to-royal-600 transition-all duration-300
-           shadow-lg shadow-royal-500/25 hover:shadow-royal-500/40
+    @apply bg-gradient-to-r from-primary-600 to-accent-600 text-white font-bold px-8 py-3 rounded-xl
+           hover:from-primary-500 hover:to-accent-500 transition-all duration-300
+           shadow-lg shadow-accent-500/25 hover:shadow-accent-500/50
            active:scale-95 transform;
   }
 

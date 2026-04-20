@@ -42,12 +42,7 @@ export default function DumbbellModel() {
         <Float speed={2} rotationIntensity={0.5} floatIntensity={1.2}>
           <Dumbbell />
         </Float>
-        <OrbitControls
-          enableZoom={false}
-          enablePan={false}
-          autoRotate
-          autoRotateSpeed={0.8}
-        />
+        <OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={0.8} />
       </Canvas>
     </div>
   );

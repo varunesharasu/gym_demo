@@ -1,4 +1,4 @@
-import { Dumbbell, InstagramIcon, TwitterIcon, YoutubeIcon } from "lucide-react";
+import { Dumbbell, Instagram, Twitter, Youtube } from "lucide-react";
 import "./Footer.css";
 
 export default function Footer() {
@@ -12,9 +12,9 @@ export default function Footer() {
           © {new Date().getFullYear()} IronForge Gym. All rights reserved.
         </p>
         <div className="footer-social">
-          <a href="#" aria-label="Instagram"><InstagramIcon /></a>
-          <a href="#" aria-label="Twitter"><TwitterIcon /></a>
-          <a href="#" aria-label="YouTube"><YoutubeIcon /></a>
+          <a href="#" aria-label="Instagram"><Instagram /></a>
+          <a href="#" aria-label="Twitter"><Twitter /></a>
+          <a href="#" aria-label="YouTube"><Youtube /></a>
         </div>
       </div>
     </footer>

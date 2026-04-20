@@ -20,17 +20,14 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="hero-text"
         >
           <p className="brand-eyebrow">#FORGE YOUR BODY</p>
           <h1 className="hero-title h-display">
             Unleash <span className="text-brand">Strength</span>
-            <br />
-            Inside You
+            <br />Inside You
           </h1>
           <p className="hero-desc">
-            State-of-the-art equipment, elite trainers, and programs engineered
-            to transform you — starting today.
+            State-of-the-art equipment, elite trainers, and programs engineered to transform you — starting today.
           </p>
           <div className="hero-ctas">
             <a href="#pricing" className="btn-primary">
@@ -41,18 +38,9 @@ export default function Hero() {
             </a>
           </div>
           <div className="hero-stats">
-            <div>
-              <div className="stat-num">15K+</div>
-              <div className="stat-label">Members</div>
-            </div>
-            <div>
-              <div className="stat-num">50+</div>
-              <div className="stat-label">Trainers</div>
-            </div>
-            <div>
-              <div className="stat-num">24/7</div>
-              <div className="stat-label">Access</div>
-            </div>
+            <div><div className="stat-num">15K+</div><div className="stat-label">Members</div></div>
+            <div><div className="stat-num">50+</div><div className="stat-label">Trainers</div></div>
+            <div><div className="stat-num">24/7</div><div className="stat-label">Access</div></div>
           </div>
         </motion.div>
 

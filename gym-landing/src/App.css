@@ -182,3 +182,5 @@
     border-right-color: var(--border);
   }
 }
+
+main { min-height: 100vh; }

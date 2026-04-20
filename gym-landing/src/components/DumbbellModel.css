@@ -1,0 +1,8 @@
+.model-wrap {
+  width: 100%;
+  height: 100%;
+}
+.model-wrap canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
